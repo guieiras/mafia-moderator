@@ -1,1 +1,4 @@
 /* Your app styles here */
+
+.ios .player-button { float: right; margin-top: -28px; }
+.md .player-button { float: right; margin-top: -35px; height: 30px; line-height: 30px; }
