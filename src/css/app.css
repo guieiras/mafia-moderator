@@ -2,3 +2,5 @@
 
 .ios .player-button { float: right; margin-top: -28px; }
 .md .player-button { float: right; margin-top: -35px; height: 30px; line-height: 30px; }
+
+.ios .player-item .item-media { padding-bottom: 0 }
