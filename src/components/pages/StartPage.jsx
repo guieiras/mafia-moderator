@@ -13,20 +13,29 @@ import {
   Block,
 } from 'framework7-react';
 import uuid from 'uuid/v1';
-import database from '../../database';
+import database from '../../boundaries/database';
+import storage from '../../boundaries/storage';
 
 export default class StartPage extends Component {
   constructor(props) {
     super(props);
     this.state = { currentPlayer: '', players: [], selectedPlayers: {} };
+    this.onPageLoad = this.onPageLoad.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addPlayer = this.addPlayer.bind(this);
     this.removePlayer = this.removePlayer.bind(this);
+    this.startGame = this.startGame.bind(this);
   }
 
-  componentDidMount() {
-    this.loadPlayers();
+  onPageLoad() {
+    storage.currentGame.fetch().then((currentGame) => {
+      if(currentGame) {
+        this.$f7router.navigate('/roles');
+      } else {
+        this.loadPlayers();
+      }
+    });
   }
 
   get selectedPlayers() {
@@ -73,8 +82,14 @@ export default class StartPage extends Component {
     this.setState({ currentPlayer: event.target.value });
   }
 
+  startGame() {
+    storage.currentGame.save({ players: this.selectedPlayers }).then(() => {
+      this.$f7router.navigate('/roles');
+    });
+  }
+
   render() {
-    return <Page>
+    return <Page onPageAfterIn={this.onPageLoad}>
       <Navbar title="Cidade Dorme"></Navbar>
       <BlockTitle>Jogadores</BlockTitle>
       <List>
@@ -95,7 +110,7 @@ export default class StartPage extends Component {
         </ListInput>
       </List>
       <Block>
-        <Button fill disabled={this.selectedPlayers.length < 6}>Iniciar Jogo</Button>
+        <Button fill disabled={this.selectedPlayers.length < 6} onClick={this.startGame}>Iniciar Jogo</Button>
       </Block>
     </Page>
   }
