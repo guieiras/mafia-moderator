@@ -8,10 +8,11 @@ import {
   ListItem,
   Navbar,
   Page,
-  SwipeoutButton,
   SwipeoutActions,
+  SwipeoutButton,
 } from 'framework7-react';
 import uuid from 'uuid/v1';
+import database from '../../database';
 
 export default class StartPage extends Component {
   constructor(props) {
@@ -23,20 +24,32 @@ export default class StartPage extends Component {
     this.removePlayer = this.removePlayer.bind(this);
   }
 
+  componentDidMount() {
+    this.loadPlayers();
+  }
+
+  loadPlayers() {
+    return database.players.toCollection().sortBy('name').then((players) => {
+      this.setState({ players });
+    });
+  }
+
   addPlayer() {
-    const { currentPlayer, players } = this.state;
-    players.push({ id: uuid(), name: currentPlayer })
-    this.setState({ players, currentPlayer: '' });
+    const { currentPlayer } = this.state;
+    database.players
+      .add({ id: uuid(), name: currentPlayer })
+      .then(() => { this.loadPlayers(); })
+      .then(() => { this.setState({ currentPlayer: '' }); });
   }
 
   removePlayer(playerId) {
     return () => {
-      const { selectedPlayers, players } = this.state;
+      const { selectedPlayers } = this.state;
       delete selectedPlayers[playerId];
-      this.setState({
-        selectedPlayers,
-        players: players.filter((player) => player.id !== playerId)
-      });
+
+      database.players.delete(playerId)
+        .then(() => { this.loadPlayers(); })
+        .then(() => { this.setState({ selectedPlayers }); });
     }
   }
 
