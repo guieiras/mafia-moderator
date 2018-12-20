@@ -10,6 +10,7 @@ import {
   Page,
   SwipeoutActions,
   SwipeoutButton,
+  Block,
 } from 'framework7-react';
 import uuid from 'uuid/v1';
 import database from '../../database';
@@ -26,6 +27,12 @@ export default class StartPage extends Component {
 
   componentDidMount() {
     this.loadPlayers();
+  }
+
+  get selectedPlayers() {
+    return Object
+      .keys(this.state.selectedPlayers)
+      .filter((key) => this.state.selectedPlayers[key]);
   }
 
   loadPlayers() {
@@ -87,6 +94,9 @@ export default class StartPage extends Component {
           </Button>
         </ListInput>
       </List>
+      <Block>
+        <Button fill disabled={this.selectedPlayers.length < 6}>Iniciar Jogo</Button>
+      </Block>
     </Page>
   }
 }
