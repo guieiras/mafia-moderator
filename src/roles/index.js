@@ -1,7 +1,15 @@
 import Assassin from './Assassin';
-import Narrator from './Narrator';
 
-export default [
-  Narrator,
+const roles = [
   Assassin,
 ];
+
+export default new class RoleManager {
+  all() {
+    return roles;
+  }
+
+  find(roleId) {
+    return roles.filter((role) => role.id === roleId)[0];
+  }
+}();

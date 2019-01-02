@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import { Page, Navbar, List, ListItem, BlockTitle, Stepper } from 'framework7-react';
-import roles from '../../roles';
+import { Page, Navbar, List, ListItem, BlockTitle, Stepper, Button, Block } from 'framework7-react';
+import RoleManager from '../../roles';
 import storage from '../../boundaries/storage';
 
 export default class RolesSelectionPage extends Component {
   constructor(props) {
     super(props);
     this.onStepperChange = this.onStepperChange.bind(this);
+    this.persistRoles = this.persistRoles.bind(this);
     this.state = {
       currentGame: { players: [] },
-      currentRoles: roles.reduce((memo, role) => {
+      currentRoles: RoleManager.all().reduce((memo, role) => {
         memo[role.id] = role.count.min;
         return memo;
       }, {})
     };
+  }
+
+  persistRoles() {
+    const { currentGame, currentRoles } = this.state;
+    currentGame.roles = Object.keys(currentRoles).reduce((memo, roleId) => {
+      if (currentRoles[roleId] > 0) { memo[roleId] = currentRoles[roleId]; }
+
+      return memo;
+    }, {});
+
+    storage.currentGame.save(currentGame).then(() => {});
   }
 
   componentDidMount() {
@@ -40,10 +52,9 @@ export default class RolesSelectionPage extends Component {
   render() {
     return <Page>
       <Navbar backLink="Voltar" backLinkForce={true} title="Selecionar Papéis" />
-      <BlockTitle>Selecionados: {this.currentRoles}/{this.state.currentGame.players.length}</BlockTitle>
       <List>
         {
-          roles.map((role) => <ListItem key={role.id} title={role.name}>
+          RoleManager.all().map((role) => <ListItem key={role.id} title={role.name}>
             <Stepper
               value={this.state.currentRoles[role.id]}
               min={role.count.min} max={role.count.max}
@@ -52,7 +63,17 @@ export default class RolesSelectionPage extends Component {
               step={1} small slot="after" />
           </ListItem>)
         }
+        <ListItem title="Papéis sem ação" style={{ fontStyle: 'italic' }}>
+          <Stepper
+            value={this.state.currentGame ? this.state.currentGame.players.length - this.currentRoles - 1 : 0}
+            disabled={true}
+            inputReadonly
+            small slot="after" />
+        </ListItem>
       </List>
+      <Block>
+        <Button fill onClick={this.persistRoles}>Iniciar Jogo</Button>
+      </Block>
     </Page>
   }
 }
