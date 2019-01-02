@@ -1,3 +1,5 @@
 export default ({
-  name: 'Assassino'
+  id: 'assassin',
+  name: 'Assassino',
+  count: { min: 1, max: 3 }
 });
