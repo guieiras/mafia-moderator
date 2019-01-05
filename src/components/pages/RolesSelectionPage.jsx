@@ -25,7 +25,9 @@ export default class RolesSelectionPage extends Component {
       return memo;
     }, {});
 
-    storage.currentGame.save(currentGame).then(() => {});
+    storage.currentGame.save(currentGame).then(() => {
+      this.$f7router.navigate("/live");
+    });
   }
 
   componentDidMount() {

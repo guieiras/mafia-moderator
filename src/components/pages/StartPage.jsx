@@ -30,7 +30,9 @@ export default class StartPage extends Component {
 
   onPageLoad() {
     storage.currentGame.fetch().then((currentGame) => {
-      if(currentGame) {
+      if(currentGame && currentGame.roles && currentGame.players) {
+        this.$f7router.navigate('/live');
+      } else if(currentGame && currentGame.players && !currentGame.roles) {
         this.$f7router.navigate('/roles');
       } else {
         this.loadPlayers();
