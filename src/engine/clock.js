@@ -4,15 +4,15 @@ export default class Clock {
   constructor() {
     this.state = observable({
       date: 1,
-      clock: 1
+      time: 0
     });
   }
 
   increment() {
-    this.state.clock++;
+    this.state.time += 1;
 
-    if(this.state.clock === 13) {
-      this.state.clock = 1;
+    if(this.state.time === 13) {
+      this.state.time = 1;
       this.state.date++;
     }
   }
