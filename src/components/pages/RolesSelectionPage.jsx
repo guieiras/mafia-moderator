@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Page, Navbar, List, ListItem, BlockTitle, Stepper, Button, Block } from 'framework7-react';
 import RoleManager from '../../roles';
+import I18n from '../../i18n';
 import storage from '../../boundaries/storage';
 
 export default class RolesSelectionPage extends Component {
@@ -56,7 +57,7 @@ export default class RolesSelectionPage extends Component {
       <Navbar backLink="Voltar" backLinkForce={true} title="Selecionar Papéis" />
       <List>
         {
-          RoleManager.all().map((role) => <ListItem key={role.id} title={role.name}>
+          RoleManager.all().map((role) => <ListItem key={role.id} title={I18n['roles'][role.id]}>
             <Stepper
               value={this.state.currentRoles[role.id]}
               min={role.count.min} max={role.count.max}
