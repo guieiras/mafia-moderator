@@ -1,27 +1,46 @@
 import React, { Component } from 'react';
-import { Navbar, Page } from 'framework7-react';
+import { Navbar, Page, Button, Card, CardContent } from 'framework7-react';
 import { observer } from 'mobx-react';
 import storage from '../../boundaries/storage';
 import Engine from '../../engine';
+import EngineViewController from '../viewControllers/engineViewController';
+import TargetComponent from '../singles/TargetComponent';
 
 export default observer(class LivePage extends Component {
   constructor(props) {
     super(props);
-    this.engine = null;
+    this.state = { targets: [] };
+    this.controller = null;
   }
   
   componentDidMount() {
     storage.currentGame.fetch().then((game) => {
-      this.engine = new Engine(game);
-      this.forceUpdate()
+      new Engine(game, (engine) => {
+        this.controller = new EngineViewController(this, engine);
+        engine.bindView(this.controller);
+        this.forceUpdate();
+      });
     });
   }
 
   render() {
-    if (!this.engine) { return <Page><p>Carregando</p></Page> }
+    if (!this.controller) { return <Page><p>Carregando</p></Page> }
     return <Page>
       <Navbar title="Jogo" />
-      <p>{JSON.stringify(this.engine.state)}</p>
+      <p>{JSON.stringify(this.controller.state)}</p>
+      {
+        this.state.targets.map((target, i) => <TargetComponent key={i} event={target} />)
+      }
+      <div>
+        {
+          this.controller.state.stack.map((event) => <Card title={event.name}>
+            <CardContent>
+              
+            </CardContent>
+          </Card>)
+        }
+      </div>
+      <Button fill onClick={() => { this.controller.engine.iterate() }}>Avançar</Button>
     </Page>
   }
 });

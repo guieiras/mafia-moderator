@@ -4,10 +4,12 @@ import Stack from "./stack";
 import Role from "./role";
 import db from "../boundaries/database";
 import Player from "./player";
-import roles from "../roles";
+import Narrator from "../roles/Narrator";
+import EngineActions from "./actions";
 
 export default class Engine {
-  constructor(game) {
+  constructor(game, onReady) {
+    this.actions = new EngineActions(this);
     this.stack = new Stack();
     this.clock = new Clock();
     this.state = observable({
@@ -17,12 +19,31 @@ export default class Engine {
       events: [],
       stack: this.stack.state,
     });
-    this.state.roles = Object.keys(game.roles).map((roleId) => new Role(roleId, game.roles[roleId]));
+    
     db.players.toArray().then((dbPlayers) => {
+      this.state.roles = Object.keys(game.roles).map((roleId) => new Role(roleId, game.roles[roleId]));
+      this.state.roles.push(new Role(Narrator, 1));
       this.state.players = game.players.map((playerId) => new Player(
-        dbPlayers.filter((dbPlayer) => dbPlayer.id == playerId)[0]
+        dbPlayers.filter((dbPlayer) => dbPlayer.id === playerId)[0]
       ));
-      this.players = [];
+
+      if(onReady) { onReady(this) };
     });
+  }
+
+  bindView(view) {
+    this.view = view;
+  }
+
+  async iterate() {
+    this.state.roles.forEach(role => {
+      const dayTimeAct = role.actions[`d${this.state.clock.date}-t${this.state.clock.time}`];
+      const timeAct = role.actions[`t${this.state.clock.time}`];
+
+      if (dayTimeAct) { dayTimeAct.activate(this.state, this, { role }); }
+      if (timeAct) { timeAct.activate(this.state, this, { role }); }
+    });
+
+    this.clock.increment();
   }
 }
