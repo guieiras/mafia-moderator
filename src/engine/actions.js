@@ -4,6 +4,6 @@ export default class EngineActions {
   }
 
   async getTargets({ id = 'genericTarget', count = 1, players }) {
-    await this.engine.view.selectFrom(id, players, count);
+    return await this.engine.view.selectFrom(id, players, count);
   }
 }

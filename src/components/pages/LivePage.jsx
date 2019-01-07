@@ -33,7 +33,7 @@ export default observer(class LivePage extends Component {
       }
       <div>
         {
-          this.controller.state.stack.map((event) => <Card title={event.name}>
+          this.controller.state.stack.map((stack, i) => <Card key={i} title={stack.event.name}>
             <CardContent>
               
             </CardContent>

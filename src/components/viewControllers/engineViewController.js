@@ -1,3 +1,5 @@
+import uuid from 'uuid/v1';
+
 export default class EngineViewController {
   constructor(view, engine) {
     this.view = view;
@@ -8,12 +10,20 @@ export default class EngineViewController {
     return this.engine.state;
   }
 
-  selectFrom(id, players, count) {
-    return new Promise((resolve, reject) => {
+  async selectFrom(id, players, count) {
+    return (new Promise((resolve) => {
+      const uid = uuid();
       const { targets } = this.view.state;
-      targets.push({ id, players, count, onFinish: (targets) => { resolve(targets) } })
+      targets.push({ 
+        id, players, count, uid, 
+        onFinish: (selectedTargets) => { 
+          const { targets } = this.view.state;
+          this.view.setState({ targets: targets.filter((target) => target.uid !== uid) });
+          resolve(selectedTargets);
+        } 
+      });
       this.view.setState({ targets });
-    });
+    }));
   }
 
 }

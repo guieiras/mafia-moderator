@@ -36,14 +36,35 @@ export default class Engine {
   }
 
   async iterate() {
-    this.state.roles.forEach(role => {
-      const dayTimeAct = role.actions[`d${this.state.clock.date}-t${this.state.clock.time}`];
-      const timeAct = role.actions[`t${this.state.clock.time}`];
+    Promise.all(this.state.roles.map((role) => {
+      return new Promise((resolve) => {
+        const dayTimeAct = role.actions[`d${this.state.clock.date}-t${this.state.clock.time}`];
+        const timeAct = role.actions[`t${this.state.clock.time}`];
 
-      if (dayTimeAct) { dayTimeAct.activate(this.state, this, { role }); }
-      if (timeAct) { timeAct.activate(this.state, this, { role }); }
-    });
+        if (dayTimeAct) {
+          dayTimeAct.activate(this.state, this, { role, clock: this.stack.clock }).then((event) => {
+            this.stack.push(event);
+            if (timeAct) {
+              timeAct.activate(this.state, this, { role, clock: this.stack.clock }).then((event) => {
+                this.stack.push(event);
+                resolve();
+              });
+            } else {
+              resolve();
+            }
+          });
+        } else {
+          resolve();
+        }
+      });
+    })).then(() => {
+      this.stack.of(this.stack.clock).forEach((children => {
+        children.event.resolve(children);
+        this.stack.pull(children.uuid);
+      }));
+      this.clock.increment();
+    })
 
-    this.clock.increment();
+
   }
 }
