@@ -1,4 +1,14 @@
 export default ({
+  pages: {
+    live: {
+      clock: {
+        title: 'Relógio',
+        format: '%t do dia %d',
+        day: 'Dia',
+        night: 'Noite'
+      }
+    }
+  },
   roles: {
     assassin: 'Assassino',
     narrator: 'Narrador',

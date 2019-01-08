@@ -6,6 +6,7 @@ import Engine from '../../engine';
 import EngineViewController from '../viewControllers/engineViewController';
 
 import ActionTracker from '../singles/ActionTrackerComponent';
+import Clock from '../singles/ClockComponent';
 import PlayersTracker from '../singles/PlayersTrackerComponent';
 import StackTracker from '../singles/StackTrackerComponent';
 
@@ -33,6 +34,7 @@ export default observer(class LivePage extends Component {
 
       <ActionTracker actions={this.state.targets} />
       <StackTracker stack={this.controller.state.stack} />
+      <Clock clock={this.controller.state.clock} />
       <PlayersTracker players={this.controller.state.players} />
 
       <Button fill onClick={() => { this.controller.engine.iterate() }}>Avançar</Button>
