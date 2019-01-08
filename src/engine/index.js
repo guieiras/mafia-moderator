@@ -14,7 +14,6 @@ export default class Engine {
     this.clock = new Clock();
     this.state = observable({
       clock: this.clock.state,
-      players: this.players,
       roles: this.roles,
       events: [],
       stack: this.stack.state,
@@ -23,9 +22,9 @@ export default class Engine {
     db.players.toArray().then((dbPlayers) => {
       this.state.roles = Object.keys(game.roles).map((roleId) => new Role(roleId, game.roles[roleId]));
       this.state.roles.push(new Role(Narrator, 1));
-      this.state.players = game.players.map((playerId) => new Player(
+      this.state.players = game.players.map((playerId) => observable(Player(
         dbPlayers.filter((dbPlayer) => dbPlayer.id === playerId)[0]
-      ));
+      )));
 
       if(onReady) { onReady(this) };
     });
