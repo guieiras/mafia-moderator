@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Page, Navbar, List, ListItem, BlockTitle, Stepper, Button, Block } from 'framework7-react';
+import { Page, Navbar, List, ListItem, Stepper, Button, Block } from 'framework7-react';
 import RoleManager from '../../roles';
 import I18n from '../../i18n';
 import storage from '../../boundaries/storage';

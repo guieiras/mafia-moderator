@@ -1,9 +1,8 @@
 export default ({
   roles: {
-    names: {
-      assassin: 'Assassino',
-      narrator: 'Narrador',
-    }
+    assassin: 'Assassino',
+    narrator: 'Narrador',
+    unknown: 'Função Desconhecida',
   },
   events: {
     discoverNarrator: {

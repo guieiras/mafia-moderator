@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Navbar, Page, Button, Card, CardContent } from 'framework7-react';
+import { Navbar, Page, Button } from 'framework7-react';
 import { observer } from 'mobx-react';
 import storage from '../../boundaries/storage';
 import Engine from '../../engine';
 import EngineViewController from '../viewControllers/engineViewController';
-import TargetComponent from '../singles/TargetComponent';
+
+import ActionTracker from '../singles/ActionTrackerComponent';
+import PlayersTracker from '../singles/PlayersTrackerComponent';
+import StackTracker from '../singles/StackTrackerComponent';
 
 export default observer(class LivePage extends Component {
   constructor(props) {
@@ -26,20 +29,12 @@ export default observer(class LivePage extends Component {
   render() {
     if (!this.controller) { return <Page><p>Carregando</p></Page> }
     return <Page>
-      <Navbar title="Jogo" />
-      <p>{JSON.stringify(this.controller.state)}</p>
-      {
-        this.state.targets.map((target, i) => <TargetComponent key={i} event={target} />)
-      }
-      <div>
-        {
-          this.controller.state.stack.map((stack, i) => <Card key={i} title={stack.event.name}>
-            <CardContent>
-              
-            </CardContent>
-          </Card>)
-        }
-      </div>
+      <Navbar title="Jogo Atual" />
+
+      <ActionTracker actions={this.state.targets} />
+      <StackTracker stack={this.controller.state.stack} />
+      <PlayersTracker players={this.controller.state.players} />
+
       <Button fill onClick={() => { this.controller.engine.iterate() }}>Avançar</Button>
     </Page>
   }
