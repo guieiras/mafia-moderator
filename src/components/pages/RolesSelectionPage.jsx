@@ -54,7 +54,7 @@ export default class RolesSelectionPage extends Component {
 
   render() {
     return <Page>
-      <Navbar backLink="Voltar" backLinkForce={true} title="Selecionar Papéis" />
+      <Navbar backLink={I18n['pages']['shared']['back']} backLinkForce={true} title={I18n['pages']['roles']['title']} />
       <List>
         {
           RoleManager.all().map((role) => <ListItem key={role.id} title={I18n['roles'][role.id]}>
@@ -66,7 +66,7 @@ export default class RolesSelectionPage extends Component {
               step={1} small slot="after" />
           </ListItem>)
         }
-        <ListItem title="Papéis sem ação" style={{ fontStyle: 'italic' }}>
+        <ListItem title={I18n['pages']['roles']['noRole']} style={{ fontStyle: 'italic' }}>
           <Stepper
             value={this.state.currentGame ? this.state.currentGame.players.length - this.currentRoles - 1 : 0}
             disabled={true}
@@ -75,7 +75,7 @@ export default class RolesSelectionPage extends Component {
         </ListItem>
       </List>
       <Block>
-        <Button fill onClick={this.persistRoles}>Iniciar Jogo</Button>
+        <Button fill onClick={this.persistRoles}>{I18n['pages']['roles']['start']}</Button>
       </Block>
     </Page>
   }
