@@ -4,6 +4,10 @@ import I18n from '../../i18n';
 import { observer } from 'mobx-react';
 
 export default observer(class PlayersTracker extends Component {
+  colorFor(state) {
+    if(!state.live) { return 'red'; } 
+    return null; 
+  }
   render() {
     return <div>
       <BlockTitle>{I18n.pages.live.players.title}</BlockTitle>
@@ -13,7 +17,8 @@ export default observer(class PlayersTracker extends Component {
             .filter((player) => !player.state.exclude)
             .map((player) => <ListItem key={player.id} 
                                        title={player.name} 
-                                       footer={I18n.roles[player.role || 'unknown']}> 
+                                       footer={I18n.roles[player.role || 'unknown']}
+                                       textColor={this.colorFor(player.state)}> 
                                 <Icon slot="media" f7="person_round" />
                               </ListItem>)
         }

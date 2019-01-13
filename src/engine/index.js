@@ -26,7 +26,7 @@ export default class Engine {
     db.players.toArray().then((dbPlayers) => {
       this.state.roles = Object.keys(game.roles).map((roleId) => new Role(roleId, game.roles[roleId]));
       this.state.roles.push(new Role(Narrator, 1));
-      this.state.players = game.players.map((playerId) => observable(Player(
+      this.state.players = game.players.map((playerId) => observable(new Player(
         dbPlayers.filter((dbPlayer) => dbPlayer.id === playerId)[0]
       )));
 
@@ -40,7 +40,7 @@ export default class Engine {
 
   handleNext() {
     if (this.view.isWaitingForActions()) { return; }
-    if (this.stack.isEmpty()) {
+    if (!this.stack.hasAnythingToResolve(this.state.clock)) {
       this.clock.increment();
       StackBuilder(this).forEach((event) => this.stack.push(event, false));
       this.handleNext();

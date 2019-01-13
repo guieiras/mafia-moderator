@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Page, Button } from 'framework7-react';
+import { Navbar, Page } from 'framework7-react';
 import { observer } from 'mobx-react';
 
 import storage from '../../boundaries/storage';
@@ -25,6 +25,7 @@ export default observer(class LivePage extends Component {
         this.controller = new EngineViewController(this, engine);
         engine.bindView(this.controller);
         this.forceUpdate();
+        this.controller.engine.iterate();
       });
     });
   }
@@ -38,8 +39,6 @@ export default observer(class LivePage extends Component {
       <StackTracker stack={this.controller.state.stack} />
       <Clock clock={this.controller.state.clock} />
       <PlayersTracker players={this.controller.state.players} />
-
-      <Button fill onClick={() => { this.controller.engine.iterate() }}>Avançar</Button>
     </Page>
   }
 });

@@ -20,17 +20,21 @@ export default class Stack {
     if (this.onChange) { this.onChange(); }
   }
 
-  top(clock) {
-    const validEvents = this.state.filter((activation) => {
-      return !activation.on ||
-        activation.on === `t${clock.time}` ||
-        activation.on === `d${clock.date}-t${clock.time}`;
+  resolvableEvents(clock) {
+    return this.state.filter((resolution) => {
+      return !resolution.on ||
+        resolution.on === `t${clock.time}` ||
+        resolution.on === `d${clock.date}-t${clock.time}`;
     });
-
-    return validEvents[validEvents.length - 1];
   }
 
-  isEmpty() {
-    return this.state.length === 0;
+  top(clock) {
+    const resolvableEvents = this.resolvableEvents(clock); 
+    return resolvableEvents[resolvableEvents.length - 1];
+
+  }
+
+  hasAnythingToResolve(clock) {
+    return this.resolvableEvents(clock).length !== 0;
   }
 }

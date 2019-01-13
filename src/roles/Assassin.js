@@ -1,4 +1,5 @@
 import discovery from "../engine/events/discovery";
+import { kill } from "../engine/player";
 
 export default ({
   id: 'assassin',
@@ -12,9 +13,10 @@ export default ({
           players: players.filter((player) => player.state.live)
         });
 
-        return { event: this, origin: role, targets };
+        return { on: 't6', event: this, origin: role, targets };
       },
       resolve(result) {
+        result.targets.forEach(target => { kill(target); });
       }
     }
   }
