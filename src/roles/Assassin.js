@@ -3,6 +3,7 @@ import { kill } from "../engine/player";
 
 export default ({
   id: 'assassin',
+  aliases: ['mafia'],
   count: { min: 1, max: 3 },
   actions: {
     'd1-t4': discovery('Assassin'),
@@ -13,7 +14,7 @@ export default ({
           players: players.filter((player) => player.state.live)
         });
 
-        return { on: 't6', event: this, origin: role, targets };
+        return { on: 't6', event: this, origin: role, targets, tags: ['kill', 'negative'] };
       },
       resolve(result) {
         result.targets.forEach(target => { kill(target); });

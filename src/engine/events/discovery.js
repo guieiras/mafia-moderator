@@ -14,7 +14,7 @@ export default function discovery(id, scope, hooks) {
     resolve(result) {
       if (hooks && hooks.beforeResolve) { hooks.beforeResolve(result) }
       result.origin.players = result.targets;
-      result.targets.forEach((target) => { target.role = result.origin.id });
+      result.targets.forEach((target) => { target.role = result.origin });
       if (hooks && hooks.afterResolve) { hooks.afterResolve(result) }
     }
   }

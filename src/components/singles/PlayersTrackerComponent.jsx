@@ -17,7 +17,7 @@ export default observer(class PlayersTracker extends Component {
             .filter((player) => !player.state.exclude)
             .map((player) => <ListItem key={player.id} 
                                        title={player.name} 
-                                       footer={I18n.roles[player.role || 'unknown']}
+                                       footer={I18n.roles[(player.role && player.role.id) || 'unknown']}
                                        textColor={this.colorFor(player.state)}> 
                                 <Icon slot="media" f7="person_round" />
                               </ListItem>)

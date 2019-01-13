@@ -9,7 +9,14 @@ export default class Stack {
   push(event, detectChanges = true) {
     event.uuid = uuid();
     this.state.push(event);
-
+    
+    if (event.targets) {
+      event.targets.forEach(player => {
+        if (player.role && player.role.hooks.onTarget) {
+          player.role.hooks.onTarget(event, this);
+        }
+      });
+    }
     if (this.onChange && detectChanges) { this.onChange(); }
   }
 

@@ -10,6 +10,10 @@ export default class Role {
     return this.base.id;
   }
 
+  get hooks() {
+    return this.base.hooks || {};
+  }
+
   get actions() {
     return this.base.actions || {};
   }
