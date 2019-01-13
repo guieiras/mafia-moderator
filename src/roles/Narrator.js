@@ -5,7 +5,7 @@ export default ({
   actions: {
     'd1-t1': discovery('Narrator', null, {
       afterResolve: (result) => {
-        result.target.state.exclude = true;
+        result.targets[0].state.exclude = true;
       }
     })
   }
