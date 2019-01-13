@@ -9,6 +9,10 @@ export default ({
       name: 'Seleção de Narrador',
       description: 'Selecione o jogador que vai comandar as ações do jogo:'
     },
+    discoverAssassin: {
+      name: 'Identificação dos Assassinos',
+      description: 'Assassinos acordam! Identifique os jogadores que estão de olhos abertos:'
+    },
   },
   pages: {
     live: {
