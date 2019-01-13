@@ -5,7 +5,7 @@ export default function discovery(id, scope, hooks) {
       const defaultScope = (players) => players.filter((player) => !player.role);
       const targets = await actions.getTargets({
         id: `discover${id}`,
-        count: role.length, 
+        count: role.players.length, 
         players: scope ? scope(players) : defaultScope(players) 
       });
 
