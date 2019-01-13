@@ -32,6 +32,12 @@ export default class TargetComponent extends Component {
                       disabled={this.state.selectedPlayers.filter((p) => p.id === player.id).length !== 0} />
             </Col>)
           }
+          { 
+            this.props.event.acceptNull && <Col width='50' style={{ marginTop: '10px' }}>
+              <Button outline style={{fontStyle: 'italic'}} text={I18n.pages.live.players.nullPlayer}
+                onClick={() => { this.target({ state: { } }) }} />
+            </Col>
+          }
         </Row>
       </CardContent>
     </Card>

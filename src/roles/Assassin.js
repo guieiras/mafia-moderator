@@ -11,6 +11,7 @@ export default ({
       name: 'mafiaKill',
       async activate({ players }, { actions }, { role }) {
         const targets = await actions.getTargets({
+          id: 'mafiaKill',
           players: players.filter((player) => player.state.live)
         });
 

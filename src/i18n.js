@@ -13,6 +13,14 @@ export default ({
       name: 'Identificação dos Assassinos',
       description: 'Assassinos acordam! Identifique os jogadores que estão de olhos abertos:'
     },
+    mafiaKill: {
+      name: 'Ataque noturno dos Assassinos',
+      description: 'Assassinos acordam! Escolha o alvo dos Assassinos.'
+    },
+    playerLynch: {
+      name: 'Eliminação do dia',
+      description: 'A cidade vota em um jogador que deseja eliminar.'
+    },
     win: {
       assassin: {
         name: 'Vitória dos Assassinos',
@@ -30,6 +38,7 @@ export default ({
         title: 'Ações',
       },
       players: {
+        nullPlayer: 'Ninguém',
         title: 'Jogadores',
       },
       stack: {
