@@ -16,11 +16,17 @@ export default class Stack {
     this.state.splice(index, 1);
   }
 
-  of(clock) {
-    return this.state.filter((activation) => {
+  top(clock) {
+    const validEvents = this.state.filter((activation) => {
       return !activation.on ||
         activation.on === `t${clock.time}` ||
         activation.on === `d${clock.date}-t${clock.time}`;
     });
+
+    return validEvents[validEvents.length - 1];
+  }
+
+  isEmpty() {
+    return this.state.length === 0;
   }
 }

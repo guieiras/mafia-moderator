@@ -1,11 +1,14 @@
 import { observable } from "mobx";
+
+import db from "../boundaries/database";
+import Narrator from "../roles/Narrator";
+
 import Clock from "./clock";
 import Stack from "./stack";
 import Role from "./role";
-import db from "../boundaries/database";
 import Player from "./player";
-import Narrator from "../roles/Narrator";
 import EngineActions from "./actions";
+import StackBuilder from './stack/builder'
 
 export default class Engine {
   constructor(game, onReady) {
@@ -34,36 +37,18 @@ export default class Engine {
     this.view = view;
   }
 
-  async iterate() {
-    Promise.all(this.state.roles.map((role) => {
-      return new Promise((resolve) => {
-        const dayTimeAct = role.actions[`d${this.state.clock.date}-t${this.state.clock.time}`];
-        const timeAct = role.actions[`t${this.state.clock.time}`];
-
-        if (dayTimeAct) {
-          dayTimeAct.activate(this.state, this, { role, clock: this.stack.clock }).then((event) => {
-            this.stack.push(event);
-            if (timeAct) {
-              timeAct.activate(this.state, this, { role, clock: this.stack.clock }).then((event) => {
-                this.stack.push(event);
-                resolve();
-              });
-            } else {
-              resolve();
-            }
-          });
-        } else {
-          resolve();
-        }
-      });
-    })).then(() => {
-      this.stack.of(this.stack.clock).forEach((children => {
-        children.event.resolve(children);
-        this.stack.pull(children.uuid);
-      }));
+  handleNext() {
+    if (this.stack.isEmpty()) {
       this.clock.increment();
-    })
+      StackBuilder(this).forEach((event) => this.stack.push(event));
+    } else {
+      const nextEvent = this.stack.top(this.state.clock);
+      nextEvent.event.resolve(nextEvent, this);
+      this.stack.pull(nextEvent.uuid);
+    }
+  }
 
-
+  async iterate() {
+    this.handleNext();
   }
 }
