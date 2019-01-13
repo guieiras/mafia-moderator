@@ -12,11 +12,21 @@ export default ({
   },
   pages: {
     live: {
+      loading: 'Carregando',
+      actions: {
+        title: 'Ações',
+      },
+      players: {
+        title: 'Jogadores',
+      },
+      stack: {
+        title: 'Eventos Pendentes',
+      },
       clock: {
         title: 'Relógio',
         format: '%t do dia %d',
         day: 'Dia',
-        night: 'Noite'
+        night: 'Noite',
       },
     },
     players: {

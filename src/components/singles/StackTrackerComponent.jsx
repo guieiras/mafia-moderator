@@ -4,7 +4,7 @@ import I18n from '../../i18n';
 
 export default function StackTrack(props) {
   return props.stack.length > 0 ? <div>
-    <BlockTitle>Eventos Pendentes</BlockTitle>
+    <BlockTitle>{ I18n.pages.live.stack.title }</BlockTitle>
     {
       props.stack.map((stack, i) => <Card key={i} title={stack.event.name}>
         <CardContent>

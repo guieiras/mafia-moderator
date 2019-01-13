@@ -6,14 +6,14 @@ import { observer } from 'mobx-react';
 export default observer(class PlayersTracker extends Component {
   render() {
     return <div>
-      <BlockTitle>Jogadores</BlockTitle>
+      <BlockTitle>{I18n.pages.live.players.title}</BlockTitle>
       <List>
         { 
           this.props.players
             .filter((player) => !player.state.exclude)
             .map((player) => <ListItem key={player.id} 
                                        title={player.name} 
-                                       footer={I18n['roles'][player.role || 'unknown']}> 
+                                       footer={I18n.roles[player.role || 'unknown']}> 
                                 <Icon slot="media" f7="person_round" />
                               </ListItem>)
         }

@@ -5,10 +5,10 @@ import MultiTargetComponent from './MultiTargetComponent';
 
 export default class TargetComponent extends Component {
   render() {
-    return <Card title={I18n['events'][this.props.event.id]['name']}>
+    return <Card title={I18n.events[this.props.event.id].name}>
       <CardContent>
         <Block>
-          <p>{I18n['events'][this.props.event.id]['description']}</p>
+          <p>{I18n.events[this.props.event.id].description}</p>
         </Block>
         <Row style={{marginTop: '30px'}}>
           {

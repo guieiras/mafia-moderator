@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Navbar, Page, Button } from 'framework7-react';
 import { observer } from 'mobx-react';
+
 import storage from '../../boundaries/storage';
 import Engine from '../../engine';
 import EngineViewController from '../viewControllers/engineViewController';
+import I18n from '../../i18n';
 
 import ActionTracker from '../singles/ActionTrackerComponent';
 import Clock from '../singles/ClockComponent';
@@ -28,7 +30,7 @@ export default observer(class LivePage extends Component {
   }
 
   render() {
-    if (!this.controller) { return <Page><p>Carregando</p></Page> }
+    if (!this.controller) { return <Page><p>{I18n.pages.live.loading}</p></Page> }
     return <Page>
       <Navbar title="Jogo Atual" />
 

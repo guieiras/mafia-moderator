@@ -93,7 +93,7 @@ export default class StartPage extends Component {
 
   render() {
     return <Page onPageAfterIn={this.onPageLoad}>
-      <Navbar title={I18n['pages']['players']['title']} />
+      <Navbar title={I18n.pages.players.title} />
       <BlockTitle>Jogadores</BlockTitle>
       <List>
         {
@@ -102,18 +102,18 @@ export default class StartPage extends Component {
               <Icon slot="media" f7={this.state.selectedPlayers[player.id] ? 'check_round_fill' : 'circle'} color="blue" />
 
               <SwipeoutActions right>
-                <SwipeoutButton color="red" onClick={this.removePlayer(player.id)}>{I18n['pages']['players']['remove']}</SwipeoutButton>
+                <SwipeoutButton color="red" onClick={this.removePlayer(player.id)}>{I18n.pages.players.remove}</SwipeoutButton>
               </SwipeoutActions>
             </ListItem>)
         }
-        <ListInput type="text" placeholder={I18n['pages']['players']['placeholder']} inputStyle={{width: '90%'}} onInput={this.handleInput}>
+        <ListInput type="text" placeholder={I18n.pages.players.placeholder} inputStyle={{width: '90%'}} onInput={this.handleInput}>
           <Button fill color="green" slot="inner-end" className="player-button" onClick={this.addPlayer}>
             <Icon f7="add"></Icon>
           </Button>
         </ListInput>
       </List>
       <Block>
-        <Button fill disabled={this.selectedPlayers.length < 6} onClick={this.startGame}>{I18n['pages']['players']['next']}</Button>
+        <Button fill disabled={this.selectedPlayers.length < 6} onClick={this.startGame}>{I18n.pages.players.next}</Button>
       </Block>
     </Page>
   }
