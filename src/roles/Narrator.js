@@ -24,5 +24,11 @@ export default ({
         result.targets.forEach(target => { kill(target); });
       }
     }
+  },
+  win(state) {
+    const assassins = state.players.filter((player) => player.role && player.role.id === 'assassin');
+
+    return assassins.length > 0 && 
+           assassins.filter((player) => player.state.live).length === 0;
   }
 });

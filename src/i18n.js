@@ -25,6 +25,10 @@ export default ({
       assassin: {
         name: 'Vitória dos Assassinos',
         description: 'O número de Assassinos ultrapassou o número de cidadãos. Os Assassinos venceram.'
+      },
+      narrator: {
+        name: 'Vitória da cidade',
+        description: 'Os Assassinos foram eliminados.'
       }
     },
     shared: {
