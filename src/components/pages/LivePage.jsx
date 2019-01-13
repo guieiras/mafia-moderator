@@ -15,7 +15,7 @@ import StackTracker from '../singles/StackTrackerComponent';
 export default observer(class LivePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { targets: [] };
+    this.state = { popups: [] };
     this.controller = null;
   }
   
@@ -34,7 +34,7 @@ export default observer(class LivePage extends Component {
     return <Page>
       <Navbar title="Jogo Atual" />
 
-      <ActionTracker actions={this.state.targets} />
+      <ActionTracker actions={this.state.popups} />
       <StackTracker stack={this.controller.state.stack} />
       <Clock clock={this.controller.state.clock} />
       <PlayersTracker players={this.controller.state.players} />

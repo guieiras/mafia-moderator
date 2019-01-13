@@ -13,16 +13,17 @@ export default class EngineViewController {
   async selectFrom(id, players, count) {
     return (new Promise((resolve) => {
       const uid = uuid();
-      const { targets } = this.view.state;
-      targets.push({ 
+      const { popups } = this.view.state;
+      popups.push({ 
+        type: 'Target',
         id, players, count, uid, 
         onFinish: (selectedTargets) => { 
-          const { targets } = this.view.state;
-          this.view.setState({ targets: targets.filter((target) => target.uid !== uid) });
+          const { popups } = this.view.state;
+          this.view.setState({ popups: popups.filter((popup) => popup.uid !== uid) });
           resolve(selectedTargets);
         } 
       });
-      this.view.setState({ targets });
+      this.view.setState({ popups });
     }));
   }
 
