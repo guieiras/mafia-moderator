@@ -14,6 +14,7 @@ export default class Engine {
   constructor(game, onReady) {
     this.actions = new EngineActions(this);
     this.stack = new Stack();
+    this.stack.onChange = this.handleNext.bind(this);
     this.clock = new Clock();
     this.state = observable({
       clock: this.clock.state,
@@ -38,9 +39,11 @@ export default class Engine {
   }
 
   handleNext() {
+    if (this.view.isWaitingForActions()) { return; }
     if (this.stack.isEmpty()) {
       this.clock.increment();
-      StackBuilder(this).forEach((event) => this.stack.push(event));
+      StackBuilder(this).forEach((event) => this.stack.push(event, false));
+      this.handleNext();
     } else {
       const nextEvent = this.stack.top(this.state.clock);
       nextEvent.event.resolve(nextEvent, this);

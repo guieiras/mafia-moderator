@@ -6,14 +6,18 @@ export default class Stack {
     this.state = observable([]);
   }
 
-  push(event) {
+  push(event, detectChanges = true) {
     event.uuid = uuid();
     this.state.push(event);
+
+    if (this.onChange && detectChanges) { this.onChange(); }
   }
 
   pull(uid) {
     const index = this.state.findIndex((element) => element.uuid === uid);
     this.state.splice(index, 1);
+
+    if (this.onChange) { this.onChange(); }
   }
 
   top(clock) {

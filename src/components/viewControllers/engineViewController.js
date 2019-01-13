@@ -6,6 +6,10 @@ export default class EngineViewController {
     this.engine = engine;
   }
 
+  isWaitingForActions() {
+    return this.view.state.popups.length !== 0;
+  }
+
   get state() {
     return this.engine.state;
   }
