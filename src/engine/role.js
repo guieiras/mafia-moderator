@@ -17,4 +17,8 @@ export default class Role {
   get actions() {
     return this.base.actions || {};
   }
+
+  get win() {
+    return this.base.win || ((_) => false);
+  }
 }

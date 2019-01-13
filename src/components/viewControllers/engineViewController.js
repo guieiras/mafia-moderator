@@ -31,4 +31,22 @@ export default class EngineViewController {
     }));
   }
 
+  async showMessage(message, object) {
+    return (new Promise((resolve) => {
+      const uid = uuid();
+      const { popups } = this.view.state;
+      popups.push({ 
+        type: 'Message',
+        message,
+        object,
+        onFinish: (selectedTargets) => { 
+          const { popups } = this.view.state;
+          this.view.setState({ popups: popups.filter((popup) => popup.uid !== uid) });
+          resolve(selectedTargets);
+        } 
+      });
+      this.view.setState({ popups });
+    }));
+  }
+
 }

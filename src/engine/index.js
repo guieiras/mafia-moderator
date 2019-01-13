@@ -39,6 +39,7 @@ export default class Engine {
   }
 
   handleNext() {
+    if (this.reachedSomeWinCondition()) { return; }
     if (this.view.isWaitingForActions()) { return; }
     if (!this.stack.hasAnythingToResolve(this.state.clock)) {
       this.clock.increment();
@@ -49,6 +50,19 @@ export default class Engine {
       nextEvent.event.resolve(nextEvent, this);
       this.stack.pull(nextEvent.uuid);
     }
+  }
+
+  reachedSomeWinCondition() {
+    for (let index = 0; index < this.state.roles.length; index++) {
+      const role = this.state.roles[index];
+      if (role.win(this.state)) {
+        this.stack.state = [];
+        this.view.showMessage(['win', role.id]);
+        return true;
+      }
+    }
+
+    return false;
   }
 
   async iterate() {

@@ -13,6 +13,15 @@ export default ({
       name: 'Identificação dos Assassinos',
       description: 'Assassinos acordam! Identifique os jogadores que estão de olhos abertos:'
     },
+    win: {
+      assassin: {
+        name: 'Vitória dos Assassinos',
+        description: 'O número de Assassinos ultrapassou o número de cidadãos. Os Assassinos venceram.'
+      }
+    },
+    shared: {
+      ok: 'OK!'
+    }
   },
   pages: {
     live: {
