@@ -6,8 +6,8 @@ export default ({
   aliases: ['investigator'],
   count: { min: 0, max: 1 },
   actions: {
-    'd1-t5': discovery('detective'),
-    't5': {
+    'd1-t6': discovery('detective'),
+    't6': {
       name: 'investigation',
       async activate({ players }, { actions }, { role }) {
         const targets = await actions.getTargets({

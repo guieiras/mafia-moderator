@@ -3,9 +3,9 @@ import { BlockTitle, Card } from 'framework7-react';
 import I18n from '../../i18n';
 
 export default function Clock(props) {
-  const period = I18n.pages.live.clock[props.clock.time > 6 ? 'day' : 'night'];
+  const period = I18n.pages.live.clock[props.clock.time > 10 ? 'day' : 'night'];
   return <div>
     <BlockTitle>{ I18n.pages.live.clock.title }</BlockTitle>
-    <Card content={`${I18n.pages.live.clock.format.replace('%d', props.clock.date).replace('%t', period)}`} />
+    <Card content={`${I18n.pages.live.clock.format.replace('%d', props.clock.date).replace('%t', period)} / D${props.clock.date}-T${props.clock.time}`} />
   </div>;
 }

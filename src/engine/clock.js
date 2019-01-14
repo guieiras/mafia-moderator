@@ -11,7 +11,7 @@ export default class Clock {
   increment() {
     this.state.time += 1;
 
-    if(this.state.time === 13) {
+    if(this.state.time === 16) {
       this.state.time = 1;
       this.state.date++;
     }

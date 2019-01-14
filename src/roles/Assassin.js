@@ -6,8 +6,8 @@ export default ({
   aliases: ['mafia'],
   count: { min: 1, max: 3 },
   actions: {
-    'd1-t4': discovery('assassin', 'assassin'),
-    't4': {
+    'd1-t5': discovery('assassin', 'assassin'),
+    't5': {
       name: 'mafiaKill',
       async activate({ players }, { actions }, { role }) {
         const targets = await actions.getTargets({

@@ -4,8 +4,8 @@ export default ({
   id: 'angel',
   count: { min: 0, max: 1 },
   actions: {
-    'd1-t5': discovery('angel'),
-    't5': {
+    'd1-t6': discovery('angel'),
+    't6': {
       name: 'blessing',
       async activate({ players }, { stack, actions }, { role }) {
         const targets = await actions.getTargets({

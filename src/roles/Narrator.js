@@ -9,7 +9,7 @@ export default ({
         result.targets[0].state = { exclude: true };
       }
     }),
-    't9': {
+    't13': {
       name: 'playerLynch',
       async activate({ players }, { actions }) {
         const targets = await actions.getTargets({

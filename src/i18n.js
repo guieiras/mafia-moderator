@@ -83,9 +83,9 @@ export default ({
       },
       clock: {
         title: 'Relógio',
-        format: '%t do dia %d',
-        day: 'Dia',
-        night: 'Noite',
+        format: '%dª %t',
+        day: 'manhã',
+        night: 'noite',
       },
     },
     players: {
