@@ -7,6 +7,10 @@ export default ({
     narrator: 'Narrador',
     unknown: 'Função Desconhecida',
   },
+  emblems: {
+    angel: ['Proteção do Anjo', 'angel-wings'],
+    mafia: ['Alvo dos Assassinos', 'targeted'],
+  },
   events: {
     angelBlessing: {
       name: 'Proteção do Anjo',

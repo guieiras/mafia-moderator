@@ -13,6 +13,7 @@ export default ({
           players: players.filter((player) => player.state.live && player.state.targetable)
         });
 
+        targets[0].emblems.push({ type: 'angel', until: 't11' });
         return { event: this, origin: role.players[0], targets, stack };
       },
       resolve(result) {

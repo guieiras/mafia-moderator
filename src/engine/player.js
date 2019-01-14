@@ -3,6 +3,7 @@ export default function Player({ id, name}) {
     id,
     name,
     role: null,
+    emblems: [],
     state: {
       exclude: false,
       live: true,

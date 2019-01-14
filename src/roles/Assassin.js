@@ -15,7 +15,9 @@ export default ({
           players: players.filter((player) => player.state.live)
         });
 
-        return { on: 't6', event: this, origin: role, targets, tags: ['kill', 'negative'] };
+        targets[0].emblems.push({ type: 'mafia', until: 't10' });
+
+        return { on: 't10', event: this, origin: role, targets, tags: ['kill', 'negative'] };
       },
       resolve(result) {
         result.targets.forEach(target => { kill(target); });
