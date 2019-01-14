@@ -1,7 +1,9 @@
 import Assassin from './Assassin';
 import Detective from './Detective';
+import Angel from './Angel';
 
 const roles = [
+  Angel,
   Assassin,
   Detective,
 ];

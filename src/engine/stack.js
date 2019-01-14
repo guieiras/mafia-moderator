@@ -8,8 +8,8 @@ export default class Stack {
 
   push(event, detectChanges = true) {
     event.uuid = uuid();
-    this.state.push(event);
-    
+    this.state.push(Object.assign({ targets: [], tags: [] }, event));
+
     if (event.targets) {
       event.targets.forEach(player => {
         if (player.role && player.role.hooks.onTarget) {
@@ -37,9 +37,8 @@ export default class Stack {
   }
 
   top(clock) {
-    const resolvableEvents = this.resolvableEvents(clock); 
+    const resolvableEvents = this.resolvableEvents(clock);
     return resolvableEvents[resolvableEvents.length - 1];
-
   }
 
   hasAnythingToResolve(clock) {

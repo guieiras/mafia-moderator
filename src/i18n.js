@@ -1,11 +1,16 @@
 export default ({
   roles: {
+    angel: 'Anjo',
     assassin: 'Assassino',
     detective: 'Detetive',
     narrator: 'Narrador',
     unknown: 'Função Desconhecida',
   },
   events: {
+    angelBlessing: {
+      name: 'Proteção do Anjo',
+      description: 'Anjo acorda e escolhe um jogador. O jogador será protegido de efeitos negativos.'
+    },
     detectiveInvestigation: {
       name: 'Investigação do Detetive',
       description: 'Detetive acorda e escolhe um outro jogador. Será revelado se o jogador é Assassino ou não.'
