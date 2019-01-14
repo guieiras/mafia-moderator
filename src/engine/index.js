@@ -14,7 +14,7 @@ export default class Engine {
   constructor(game, onReady) {
     this.actions = new EngineActions(this);
     this.stack = new Stack();
-    this.stack.onChange = this.handleNext.bind(this);
+    this.stack.onChange = this.ignite.bind(this);
     this.clock = new Clock();
     this.state = observable({
       clock: this.clock.state,
@@ -38,17 +38,21 @@ export default class Engine {
     this.view = view;
   }
 
-  handleNext() {
+  resolveNext(forcePull = true) {
+    const nextEvent = this.stack.top(this.state.clock);
+    nextEvent.event.resolve(nextEvent, this);
+    this.stack.pull(nextEvent.uuid, forcePull);
+  }
+
+  ignite() {
     if (this.reachedSomeWinCondition()) { return; }
     if (this.view.isWaitingForActions()) { return; }
     if (!this.stack.hasAnythingToResolve(this.state.clock)) {
       this.clock.increment();
       StackBuilder(this).forEach((event) => this.stack.push(event, false));
-      this.handleNext();
+      this.ignite();
     } else {
-      const nextEvent = this.stack.top(this.state.clock);
-      nextEvent.event.resolve(nextEvent, this);
-      this.stack.pull(nextEvent.uuid);
+      this.resolveNext();
     }
   }
 
@@ -63,9 +67,5 @@ export default class Engine {
     }
 
     return false;
-  }
-
-  async iterate() {
-    this.handleNext();
   }
 }

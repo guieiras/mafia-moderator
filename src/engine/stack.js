@@ -20,16 +20,17 @@ export default class Stack {
     if (this.onChange && detectChanges) { this.onChange(); }
   }
 
-  pull(uid) {
+  pull(uid, detectChanges = true) {
     const index = this.state.findIndex((element) => element.uuid === uid);
     this.state.splice(index, 1);
 
-    if (this.onChange) { this.onChange(); }
+    if (this.onChange && detectChanges) { this.onChange(); }
   }
 
   resolvableEvents(clock) {
     return this.state.filter((resolution) => {
       return !resolution.on ||
+        resolution.on === `push` ||
         resolution.on === `t${clock.time}` ||
         resolution.on === `d${clock.date}-t${clock.time}`;
     });

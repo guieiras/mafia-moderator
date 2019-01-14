@@ -9,7 +9,7 @@ export default function discovery(id, scope, hooks) {
         players: scope ? scope(players) : defaultScope(players) 
       });
 
-      return { event: this, origin: role, targets };
+      return { event: this, origin: role, targets, on: 'push' };
     },
     resolve(result) {
       if (hooks && hooks.beforeResolve) { hooks.beforeResolve(result) }

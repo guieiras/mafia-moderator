@@ -25,7 +25,7 @@ export default observer(class LivePage extends Component {
         this.controller = new EngineViewController(this, engine);
         engine.bindView(this.controller);
         this.forceUpdate();
-        this.controller.engine.iterate();
+        this.controller.engine.ignite();
       });
     });
   }
