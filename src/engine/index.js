@@ -40,7 +40,9 @@ export default class Engine {
 
   resolveNext(forcePull = true) {
     const nextEvent = this.stack.top(this.state.clock);
-    nextEvent.event.resolve(nextEvent, this);
+    if (!nextEvent.negatedBy) {
+      nextEvent.event.resolve(nextEvent, this);
+    }
     this.stack.pull(nextEvent.uuid, forcePull);
   }
 
