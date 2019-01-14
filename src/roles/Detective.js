@@ -15,7 +15,7 @@ export default ({
           players: players.filter((player) => player.state.live && player.state.targetable)
         });
 
-        return { event: this, origin: role, targets, actions, actFn: () => { return !!targets[0].role && targets[0].role.id === 'assassin' } };
+        return { event: this, origin: role.players[0], targets, actions, actFn: () => { return !!targets[0].role && targets[0].role.id === 'assassin' } };
       },
       resolve(result) {
         result.actions.showMessage(
