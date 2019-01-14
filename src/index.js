@@ -16,6 +16,7 @@ import 'framework7/css/framework7.min.css';
 
 // Icons
 import './css/icons.css';
+import './css/gameicons/game-icons.css';
 
 // Custom app styles
 import './css/app.css';
