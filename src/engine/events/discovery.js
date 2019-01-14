@@ -6,12 +6,12 @@ export default function discovery(id, method = 'wakeup', hooks) {
     async activate({ players }, { actions }, { role }) {
       const targets = await actions.getTargets({
         id: `discover.${method}`,
-        count: role.players.length, 
+        count: role.players.length,
         players: players.filter((player) => !player.role),
         helpers: [I18n.roles[role.id]]
       });
 
-      return { event: this, origin: role, targets, on: 'push' };
+      return { event: this, origin: role, targets, actions, on: 'push' };
     },
     resolve(result) {
       if (hooks && hooks.beforeResolve) { hooks.beforeResolve(result) }
@@ -20,5 +20,5 @@ export default function discovery(id, method = 'wakeup', hooks) {
       if (hooks && hooks.afterResolve) { hooks.afterResolve(result) }
     }
   }
-  
+
 }

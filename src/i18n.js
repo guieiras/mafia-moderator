@@ -3,6 +3,7 @@ export default ({
     angel: 'Anjo',
     assassin: 'Assassino',
     detective: 'Detetive',
+    informant: 'Informante',
     narrator: 'Narrador',
     unknown: 'Função Desconhecida',
   },
@@ -40,6 +41,10 @@ export default ({
         name: 'Seleção de Narrador',
         description: 'Selecione o jogador que vai comandar as ações do jogo:'
       },
+    },
+    informationDetails: {
+      name: 'Identificação dos Assassinos para o informante',
+      description: 'Todos os assassinos devem erguer o polegar. Cada informante, separadamente, deve abrir os olhos e identificar os assassinos sem que eles o saibam.'
     },
     mafiaKill: {
       name: 'Ataque noturno dos Assassinos',
