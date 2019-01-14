@@ -14,7 +14,7 @@ export default ({
       async activate({ players }, { actions }) {
         const targets = await actions.getTargets({
           id: 'playerLynch',
-          players: players.filter((player) => player.state.voted),
+          players: players.filter((player) => player.state.votable),
           acceptNull: true,
         });
 
@@ -28,7 +28,7 @@ export default ({
   win(state) {
     const assassins = state.players.filter((player) => player.role && player.role.id === 'assassin');
 
-    return assassins.length > 0 && 
+    return assassins.length > 0 &&
            assassins.filter((player) => player.state.live).length === 0;
   }
 });

@@ -8,9 +8,9 @@ export default function Player({ id, name}) {
       live: true,
       talk: true,
       target: true,
-      targeted: true,
+      targetable: true,
       vote: true,
-      voted: true,
+      votable: true,
     }
   }
 }
@@ -19,7 +19,7 @@ export function kill(player) {
   player.state.live = false;
   player.state.talk = false;
   player.state.target = false;
-  player.state.targeted = false;
+  player.state.targetable = false;
   player.state.vote = false;
-  player.state.voted = false;
+  player.state.votable = false;
 }
