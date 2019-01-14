@@ -10,21 +10,31 @@ export default ({
       name: 'Investigação do Detetive',
       description: 'Detetive acorda e escolhe um outro jogador. Será revelado se o jogador é Assassino ou não.'
     },
-    'discover.assassin': {
-      name: 'Assassinos acordam!',
-      description: 'Identifique os jogadores que estão de olhos abertos:'
+    detectiveInvestigationResult: {
+      name: 'Investigação do Detetive',
+      description: 'O jogador escolhido $0 Assassino.',
+      objects: {
+        false: 'não é',
+        true: 'é',
+      }
     },
-    'discover.silent': {
-      name: '$0 se identifica.',
-      description: 'O jogador deve levantar o polegar. Identique o jogador:'
-    },
-    'discover.wakeup': {
-      name: '$0 acorda!',
-      description: 'Identifique o jogador que está de olhos abertos:'
-    },
-    'discover.narrator': {
-      name: 'Seleção de Narrador',
-      description: 'Selecione o jogador que vai comandar as ações do jogo:'
+    discover: {
+      assassin: {
+        name: 'Assassinos acordam!',
+        description: 'Identifique os jogadores que estão de olhos abertos:'
+      },
+      silent: {
+        name: '$0 se identifica.',
+        description: 'O jogador deve levantar o polegar. Identique o jogador:'
+      },
+      wakeup: {
+        name: '$0 acorda!',
+        description: 'Identifique o jogador que está de olhos abertos:'
+      },
+      narrator: {
+        name: 'Seleção de Narrador',
+        description: 'Selecione o jogador que vai comandar as ações do jogo:'
+      },
     },
     mafiaKill: {
       name: 'Ataque noturno dos Assassinos',
@@ -46,7 +56,7 @@ export default ({
     },
     shared: {
       ok: 'OK!'
-    }
+    },
   },
   pages: {
     live: {

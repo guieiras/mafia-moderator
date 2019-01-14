@@ -15,35 +15,23 @@ export default class TargetComponent extends Component {
 
     if(this.props.event.count === this.state.selectedPlayers.length) {
       this.props.event.onFinish(this.state.selectedPlayers);
-    } 
-  }
-
-  buildEventText() {
-    const eventText = Object.assign({ name: this.props.event.id }, (I18n.events[this.props.event.id] || {}));
-    const helpers = this.props.event.helpers || [];
-    
-    ['name', 'description'].forEach((key) => {
-      eventText[key] = helpers.reduce((memo, helper, i) => memo.replace(`$${i}`, helper), eventText[key]);
-    });
-
-    return eventText;
+    }
   }
 
   render() {
-    const event = this.buildEventText();
-    return <Card title={event.name}>
+    return <Card title={this.props.event.name}>
       <CardContent>
-        <Block><p>{event.description}</p></Block>
+        <Block><p>{this.props.event.description}</p></Block>
         <Row style={{marginTop: '30px'}}>
           {
             this.props.event.players.map(player => <Col key={player.id} width='50'style={{ marginTop: '10px' }}>
-              <Button outline 
-                      text={player.name} 
-                      onClick={() => { this.target(player) }} 
+              <Button outline
+                      text={player.name}
+                      onClick={() => { this.target(player) }}
                       disabled={this.state.selectedPlayers.filter((p) => p.id === player.id).length !== 0} />
             </Col>)
           }
-          { 
+          {
             this.props.event.acceptNull && <Col width='50' style={{ marginTop: '10px' }}>
               <Button outline style={{fontStyle: 'italic'}} text={I18n.pages.live.players.nullPlayer}
                 onClick={() => { this.target({ state: { } }) }} />

@@ -22,7 +22,7 @@ export default class Engine {
       events: [],
       stack: this.stack.state,
     });
-    
+
     db.players.toArray().then((dbPlayers) => {
       this.state.roles = Object.keys(game.roles).map((roleId) => new Role(roleId, game.roles[roleId]));
       this.state.roles.push(new Role(Narrator, 1));
@@ -61,7 +61,7 @@ export default class Engine {
       const role = this.state.roles[index];
       if (role.win(this.state)) {
         this.stack.state = [];
-        this.view.showMessage(['win', role.id]);
+        this.actions.showMessage(['win', role.id]);
         return true;
       }
     }

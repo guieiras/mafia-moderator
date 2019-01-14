@@ -14,39 +14,32 @@ export default class EngineViewController {
     return this.engine.state;
   }
 
+  async showPopup(popupBuilder) {
+    return (new Promise((resolve) => {
+      const uid = uuid();
+      const { popups } = this.view.state;
+      popups.push(popupBuilder(uid, (result) => {
+        const { popups } = this.view.state;
+        this.view.setState({ popups: popups.filter((popup) => popup.uid !== uid) });
+        resolve(result);
+      }));
+      this.view.setState({ popups });
+    }));
+  }
+
   async selectFrom(id, players, count, acceptNull, helpers) {
-    return (new Promise((resolve) => {
-      const uid = uuid();
-      const { popups } = this.view.state;
-      popups.push({ 
-        type: 'Target',
-        id, players, count, uid, acceptNull, helpers,
-        onFinish: (selectedTargets) => { 
-          const { popups } = this.view.state;
-          this.view.setState({ popups: popups.filter((popup) => popup.uid !== uid) });
-          resolve(selectedTargets);
-        } 
-      });
-      this.view.setState({ popups });
+    return this.showPopup((uid, onFinish) => ({
+      type: 'Target',
+      id, players, count, uid, acceptNull, helpers, onFinish
     }));
   }
 
-  async showMessage(message, object) {
-    return (new Promise((resolve) => {
-      const uid = uuid();
-      const { popups } = this.view.state;
-      popups.push({ 
-        type: 'Message',
-        message,
-        object,
-        onFinish: (selectedTargets) => { 
-          const { popups } = this.view.state;
-          this.view.setState({ popups: popups.filter((popup) => popup.uid !== uid) });
-          resolve(selectedTargets);
-        } 
-      });
-      this.view.setState({ popups });
+  async showMessage(id, helpers) {
+    return this.showPopup((uid, onFinish) => ({
+      type: 'Message', uid, id, helpers, onFinish: () => {
+        onFinish();
+        this.engine.ignite();
+      }
     }));
   }
-
 }
