@@ -1,21 +1,34 @@
 export default ({
   roles: {
     assassin: 'Assassino',
+    detective: 'Detetive',
     narrator: 'Narrador',
     unknown: 'Função Desconhecida',
   },
   events: {
-    discoverNarrator: {
+    detectiveInvestigation: {
+      name: 'Investigação do Detetive',
+      description: 'Detetive acorda e escolhe um outro jogador. Será revelado se o jogador é Assassino ou não.'
+    },
+    'discover.assassin': {
+      name: 'Assassinos acordam!',
+      description: 'Identifique os jogadores que estão de olhos abertos:'
+    },
+    'discover.silent': {
+      name: '$0 se identifica.',
+      description: 'O jogador deve levantar o polegar. Identique o jogador:'
+    },
+    'discover.wakeup': {
+      name: '$0 acorda!',
+      description: 'Identifique o jogador que está de olhos abertos:'
+    },
+    'discover.narrator': {
       name: 'Seleção de Narrador',
       description: 'Selecione o jogador que vai comandar as ações do jogo:'
     },
-    discoverAssassin: {
-      name: 'Identificação dos Assassinos',
-      description: 'Assassinos acordam! Identifique os jogadores que estão de olhos abertos:'
-    },
     mafiaKill: {
       name: 'Ataque noturno dos Assassinos',
-      description: 'Assassinos acordam! Escolha o alvo dos Assassinos.'
+      description: 'Escolha o alvo dos Assassinos. O jogador escolhido será eliminado.'
     },
     playerLynch: {
       name: 'Eliminação do dia',

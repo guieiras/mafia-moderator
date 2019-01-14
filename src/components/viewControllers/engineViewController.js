@@ -14,13 +14,13 @@ export default class EngineViewController {
     return this.engine.state;
   }
 
-  async selectFrom(id, players, count, acceptNull) {
+  async selectFrom(id, players, count, acceptNull, helpers) {
     return (new Promise((resolve) => {
       const uid = uuid();
       const { popups } = this.view.state;
       popups.push({ 
         type: 'Target',
-        id, players, count, uid, acceptNull,
+        id, players, count, uid, acceptNull, helpers,
         onFinish: (selectedTargets) => { 
           const { popups } = this.view.state;
           this.view.setState({ popups: popups.filter((popup) => popup.uid !== uid) });

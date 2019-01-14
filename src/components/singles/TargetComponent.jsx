@@ -18,8 +18,19 @@ export default class TargetComponent extends Component {
     } 
   }
 
+  buildEventText() {
+    const eventText = Object.assign({ name: this.props.event.id }, (I18n.events[this.props.event.id] || {}));
+    const helpers = this.props.event.helpers || [];
+    
+    ['name', 'description'].forEach((key) => {
+      eventText[key] = helpers.reduce((memo, helper, i) => memo.replace(`$${i}`, helper), eventText[key]);
+    });
+
+    return eventText;
+  }
+
   render() {
-    const event = I18n.events[this.props.event.id] || { name: this.props.event.id };
+    const event = this.buildEventText();
     return <Card title={event.name}>
       <CardContent>
         <Block><p>{event.description}</p></Block>

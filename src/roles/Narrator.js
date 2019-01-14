@@ -4,7 +4,7 @@ import { kill } from "../engine/player";
 export default ({
   id: 'narrator',
   actions: {
-    'd1-t1': discovery('Narrator', null, {
+    'd1-t1': discovery('narrator', 'narrator', {
       afterResolve: (result) => {
         result.targets[0].state = { exclude: true };
       }

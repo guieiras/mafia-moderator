@@ -1,12 +1,14 @@
-export default function discovery(id, scope, hooks) {
+import I18n from '../../i18n';
+
+export default function discovery(id, method = 'wakeup', hooks) {
   return {
     name: `discovery${id}`,
     async activate({ players }, { actions }, { role }) {
-      const defaultScope = (players) => players.filter((player) => !player.role);
       const targets = await actions.getTargets({
-        id: `discover${id}`,
+        id: `discover.${method}`,
         count: role.players.length, 
-        players: scope ? scope(players) : defaultScope(players) 
+        players: players.filter((player) => !player.role),
+        helpers: [I18n.roles[role.id]]
       });
 
       return { event: this, origin: role, targets, on: 'push' };

@@ -3,7 +3,7 @@ export default class EngineActions {
     this.engine = engine;
   }
 
-  async getTargets({ id = 'genericTarget', count = 1, players, acceptNull = false }) {
-    return await this.engine.view.selectFrom(id, players, count, acceptNull);
+  async getTargets({ id = 'genericTarget', count = 1, players, acceptNull = false, helpers = [] }) {
+    return await this.engine.view.selectFrom(id, players, count, acceptNull, helpers);
   }
 }
