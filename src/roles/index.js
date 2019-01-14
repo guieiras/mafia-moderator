@@ -1,7 +1,9 @@
 import Assassin from './Assassin';
+import Detective from './Detective';
 
 const roles = [
   Assassin,
+  Detective,
 ];
 
 export default new class RoleManager {
