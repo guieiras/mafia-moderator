@@ -1,4 +1,5 @@
 import { observable } from "mobx";
+import TailCall from 'tail-call/core';
 
 import db from "../boundaries/database";
 import Narrator from "../roles/Narrator";
@@ -14,6 +15,7 @@ export default class Engine {
   constructor(game, onReady) {
     this.actions = new EngineActions(this);
     this.stack = new Stack();
+    this.ignite = TailCall.recur(this.handleNext);
     this.stack.onChange = this.ignite.bind(this);
     this.clock = new Clock();
     this.state = observable({
@@ -46,7 +48,7 @@ export default class Engine {
     this.stack.pull(nextEvent.uuid, forcePull);
   }
 
-  ignite() {
+  handleNext() {
     if (this.reachedSomeWinCondition()) { return; }
     if (this.view.isWaitingForActions()) { return; }
     if (!this.stack.hasAnythingToResolve(this.state.clock)) {
