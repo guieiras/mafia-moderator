@@ -21,7 +21,7 @@ export default observer(class PlayersTracker extends Component {
                                        textColor={this.colorFor(player.state)}>
                                 <Icon slot="media" f7="person_round" />
                                 <div slot="after">
-                                  { player.emblems.map((emblem, i) => <i key={i} className={`game-icon game-icon-${I18n.emblems[emblem.type][1]}`} title={I18n.emblems[emblem.type][0]} />)}
+                                  { player.emblems.map((emblem, i) => <i key={i} className={`game-icon game-icon-${I18n.emblems[emblem.type][1]}`} title={I18n.emblems[emblem.type][0]} style={{marginRight: '5px'}} />)}
                                 </div>
                               </ListItem>)
         }
