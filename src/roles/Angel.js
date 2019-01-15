@@ -14,7 +14,7 @@ export default ({
         });
 
         targets[0].emblems.push({ type: 'angel', until: { time: 10 } });
-        return { event: this, origin: role.players[0], targets, stack };
+        return { event: this, origin: role.players[0], targets, stack, on: 't9' };
       },
       resolve(result) {
         const negativeEvents = result.stack.state.filter((ev) =>

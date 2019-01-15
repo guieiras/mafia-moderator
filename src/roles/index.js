@@ -1,4 +1,5 @@
 import Assassin from './Assassin';
+import Bodyguard from './Bodyguard';
 import Detective from './Detective';
 import Informant from './Informant';
 import Angel from './Angel';
@@ -6,6 +7,7 @@ import Angel from './Angel';
 const roles = [
   Angel,
   Assassin,
+  Bodyguard,
   Detective,
   Informant,
 ];

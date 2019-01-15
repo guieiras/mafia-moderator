@@ -2,6 +2,7 @@ export default ({
   roles: {
     angel: 'Anjo',
     assassin: 'Assassino',
+    bodyguard: 'Guarda-Costas',
     detective: 'Detetive',
     informant: 'Informante',
     narrator: 'Narrador',
@@ -9,12 +10,17 @@ export default ({
   },
   emblems: {
     angel: ['Proteção do Anjo', 'angel-wings'],
+    bodyguard: ['Proteção do Guarda-Costas', 'black-hand-shield'],
     mafia: ['Alvo dos Assassinos', 'targeted'],
   },
   events: {
     angelBlessing: {
       name: 'Proteção do Anjo',
       description: 'Anjo acorda e escolhe um jogador. O jogador será protegido de efeitos negativos.'
+    },
+    bodyProtection: {
+      name: 'Proteção do Guarda-Costas',
+      description: 'Guarda-Costas acorda e escolhe um outro jogador. O jogador será protegido dos assassinos, usando o Guarda-costas em seu lugar.'
     },
     detectiveInvestigation: {
       name: 'Investigação do Detetive',
