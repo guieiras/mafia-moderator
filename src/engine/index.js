@@ -53,6 +53,7 @@ export default class Engine {
     if (this.view.isWaitingForActions()) { return; }
     if (!this.stack.hasAnythingToResolve(this.state.clock)) {
       this.clock.increment();
+      this.checkEmblems();
       StackBuilder(this).forEach((event) => this.stack.push(event, false));
       this.ignite();
     } else {
@@ -71,5 +72,14 @@ export default class Engine {
     }
 
     return false;
+  }
+
+  checkEmblems() {
+    this.state.players.forEach(player => {
+      player.emblems = player.emblems.filter((emblem) =>
+        !emblem.until ||
+        ((!emblem.until.date || emblem.until.day >= this.state.clock.date) &&
+          ((emblem.until.time || 1) > this.state.clock.time)))
+    });
   }
 }
