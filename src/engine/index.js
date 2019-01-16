@@ -32,7 +32,7 @@ export default class Engine {
         dbPlayers.filter((dbPlayer) => dbPlayer.id === playerId)[0]
       )));
 
-      if(onReady) { onReady(this) };
+      if (onReady) { onReady(this) };
     });
   }
 
@@ -53,6 +53,7 @@ export default class Engine {
     if (this.view.isWaitingForActions()) { return; }
     if (!this.stack.hasAnythingToResolve(this.state.clock)) {
       this.clock.increment();
+      this.updateDailyReport();
       this.checkEmblems();
       StackBuilder(this).forEach((event) => this.stack.push(event, false));
       this.ignite();
@@ -81,5 +82,11 @@ export default class Engine {
         ((!emblem.until.date || emblem.until.day >= this.state.clock.date) &&
           ((emblem.until.time || 1) > this.state.clock.time)))
     });
+  }
+
+  updateDailyReport() {
+    if (this.state.clock.time === 1) {
+      this.dailyReport = [];
+    }
   }
 }
