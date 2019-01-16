@@ -27,6 +27,7 @@ export default ({
   },
   shared: {
     back: 'Voltar',
+    title: 'Cidade Dorme',
   },
   roles: {
     title: 'Selecionar Papéis',

@@ -94,7 +94,7 @@ export default class StartPage extends Component {
   render() {
     return <Page onPageAfterIn={this.onPageLoad}>
       <Navbar title={I18n.pages.players.title} />
-      <BlockTitle>Jogadores</BlockTitle>
+      <BlockTitle>{I18n.pages.players.blocktitle}</BlockTitle>
       <List>
         {
           this.state.players.map((player) =>

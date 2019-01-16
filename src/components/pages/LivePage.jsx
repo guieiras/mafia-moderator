@@ -10,7 +10,6 @@ import I18n from '../../i18n';
 import ActionTracker from '../singles/ActionTrackerComponent';
 import Clock from '../singles/ClockComponent';
 import PlayersTracker from '../singles/PlayersTrackerComponent';
-import StackTracker from '../singles/StackTrackerComponent';
 
 export default observer(class LivePage extends Component {
   constructor(props) {
@@ -18,7 +17,7 @@ export default observer(class LivePage extends Component {
     this.state = { popups: [] };
     this.controller = null;
   }
-  
+
   componentDidMount() {
     storage.currentGame.fetch().then((game) => {
       new Engine(game, (engine) => {
@@ -33,10 +32,9 @@ export default observer(class LivePage extends Component {
   render() {
     if (!this.controller) { return <Page><p>{I18n.pages.live.loading}</p></Page> }
     return <Page>
-      <Navbar title="Jogo Atual" />
+      <Navbar title={I18n.pages.shared.title} />
 
       <ActionTracker actions={this.state.popups} />
-      <StackTracker stack={this.controller.state.stack} />
       <Clock clock={this.controller.state.clock} />
       <PlayersTracker players={this.controller.state.players} />
     </Page>
