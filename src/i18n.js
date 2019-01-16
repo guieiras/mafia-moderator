@@ -64,6 +64,10 @@ export default ({
       name: 'Eliminação do dia',
       description: 'A cidade vota em um jogador que deseja eliminar.'
     },
+    rolePlayersDead: {
+      name: 'O $0 foi eliminado!',
+      description: 'Acorde o jogador, aguarde um instante, e peça para que o jogador durma. Dessa forma não será possível saber se o jogador foi eliminado.'
+    },
     win: {
       assassin: {
         name: 'Vitória dos Assassinos',
