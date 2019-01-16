@@ -66,7 +66,7 @@ export default class Engine {
       const role = this.state.roles[index];
       if (role.win(this.state)) {
         this.stack.state = [];
-        this.actions.showMessage(['win', role.id]);
+        this.actions.showMessage(['win', role.id], [], false);
         return true;
       }
     }

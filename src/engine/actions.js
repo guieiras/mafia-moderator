@@ -7,7 +7,7 @@ export default class EngineActions {
     return await this.engine.view.selectFrom(id, players, count, acceptNull, helpers);
   }
 
-  async showMessage(id, helpers = []) {
-    return await this.engine.view.showMessage(id, helpers);
+  async showMessage(id, helpers = [], igniteAfter = true) {
+    return await this.engine.view.showMessage(id, helpers, igniteAfter);
   }
 }

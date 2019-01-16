@@ -1,9 +1,10 @@
 import I18n from '../../i18n';
 
-export default function discovery(id, method = 'wakeup', hooks) {
+export default function discovery(id, method = 'wakeup', hooks = {}) {
   return {
     name: `discovery${id}`,
     async activate({ players }, { actions }, { role }) {
+      if (hooks.beforeActivate) { await hooks.beforeActivate(...arguments); }
       const targets = await actions.getTargets({
         id: `discover.${method}`,
         count: role.players.length,
@@ -14,10 +15,10 @@ export default function discovery(id, method = 'wakeup', hooks) {
       return { event: this, origin: role, targets, actions, on: 'push' };
     },
     resolve(result) {
-      if (hooks && hooks.beforeResolve) { hooks.beforeResolve(result) }
+      if (hooks.beforeResolve) { hooks.beforeResolve(result) }
       result.origin.players = result.targets;
       result.targets.forEach((target) => { target.role = result.origin });
-      if (hooks && hooks.afterResolve) { hooks.afterResolve(result) }
+      if (hooks.afterResolve) { hooks.afterResolve(result) }
     }
   }
 

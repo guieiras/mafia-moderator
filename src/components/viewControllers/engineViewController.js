@@ -34,11 +34,11 @@ export default class EngineViewController {
     }));
   }
 
-  async showMessage(id, helpers) {
+  async showMessage(id, helpers, igniteAfter) {
     return this.showPopup((uid, onFinish) => ({
       type: 'Message', uid, id, helpers, onFinish: () => {
         onFinish();
-        this.engine.ignite();
+        if(igniteAfter) { this.engine.ignite(); }
       }
     }));
   }
