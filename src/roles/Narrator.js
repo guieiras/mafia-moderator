@@ -10,6 +10,14 @@ export default ({
         result.targets[0].state = { exclude: true };
       }
     }),
+    't1': {
+      name: 'citySleeps',
+      async activate(_, { actions }) {
+        await actions.showMessage('citySleeps', []);
+
+        return { event: { resolve: () => {} } };
+      }
+    },
     't11': {
       name: 'cityWakeUp',
       async activate(_, { actions, dailyReport }) {

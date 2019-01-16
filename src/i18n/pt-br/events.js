@@ -7,9 +7,13 @@ export default ({
     name: 'Proteção do Guarda-Costas',
     description: 'Guarda-Costas acorda e escolhe um outro jogador. O jogador será protegido dos assassinos, usando o Guarda-costas em seu lugar.'
   },
+  citySleeps: {
+    name: 'Cidade Dorme!',
+    description: 'Todos os jogadores devem fechar seus olhos.'
+  },
   cityWakeUp: {
     name: 'Cidade Acorda!',
-    description: 'Os eventos que marcaram essa noite foram:'
+    description: 'Todos os jogadores devem abrir seus olhos. Os eventos que marcaram essa noite foram:'
   },
   detectiveInvestigation: {
     name: 'Investigação do Detetive',
