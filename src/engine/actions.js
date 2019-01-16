@@ -10,4 +10,8 @@ export default class EngineActions {
   async showMessage(id, helpers = [], igniteAfter = true) {
     return await this.engine.view.showMessage(id, helpers, igniteAfter);
   }
+
+  async showList(message, list, translate, igniteAfter = true) {
+    return await this.engine.view.showList(message, list, translate, igniteAfter);
+  }
 }

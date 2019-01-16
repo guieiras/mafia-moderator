@@ -42,4 +42,14 @@ export default class EngineViewController {
       }
     }));
   }
+
+  async showList(id, list, translator, igniteAfter) {
+    return this.showPopup((uid, onFinish) => ({
+      type: 'MessageList', uid, id, list, translator, helpers: [],
+      onFinish: () => {
+        onFinish();
+        if(igniteAfter) { this.engine.ignite(); }
+      }
+    }));
+  }
 }

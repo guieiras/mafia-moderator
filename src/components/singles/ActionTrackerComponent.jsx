@@ -2,6 +2,7 @@ import React from 'react';
 import { BlockTitle } from 'framework7-react';
 import TargetComponent from '../singles/TargetComponent';
 import MessageComponent from '../singles/MessageComponent';
+import MessageListComponent from '../singles/MessageListComponent';
 import I18n from '../../i18n';
 
 export default function ActionTracker(props) {
@@ -25,6 +26,7 @@ export default function ActionTracker(props) {
         switch (action.type) {
           case 'Target': return <TargetComponent key={i} event={decorateEvent(action)} />
           case 'Message': return <MessageComponent key={i} event={decorateEvent(action)} />
+          case 'MessageList': return <MessageListComponent key={i} event={decorateEvent(action)} />
           default: return null;
         }
       })
