@@ -1,4 +1,5 @@
 import discovery from "../engine/events/discovery";
+import WakeUpTranslator from "../engine/translators/wakeup";
 import { kill } from "../engine/player";
 
 export default ({
@@ -9,6 +10,14 @@ export default ({
         result.targets[0].state = { exclude: true };
       }
     }),
+    't11': {
+      name: 'cityWakeUp',
+      async activate(_, { actions, dailyReport }) {
+        await actions.showList('cityWakeUp', dailyReport, WakeUpTranslator, true);
+
+        return { event: { resolve: () => {} } };
+      }
+    },
     't13': {
       name: 'playerLynch',
       async activate({ players }, { actions }) {

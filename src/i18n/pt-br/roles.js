@@ -13,4 +13,6 @@ export default ({
     bodyguard: ['Proteção do Guarda-Costas', 'black-hand-shield'],
     mafia: ['Alvo dos Assassinos', 'targeted'],
   },
+  reports: {
+  }
 });
