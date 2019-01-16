@@ -19,8 +19,11 @@ export default ({
 
         return { on: 't10', event: this, origin: role, targets, tags: ['kill', 'negative'] };
       },
-      resolve(result) {
-        result.targets.forEach(target => { kill(target); });
+      resolve(result, { dailyReport }) {
+        result.targets.forEach(target => {
+          dailyReport.push({ action: 'MafiaKilled', player: target });
+          kill(target);
+        });
       }
     }
   },

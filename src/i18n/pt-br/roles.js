@@ -14,5 +14,6 @@ export default ({
     mafia: ['Alvo dos Assassinos', 'targeted'],
   },
   reports: {
+    mafiaKiled: '$player foi eliminado pelos assassinos!',
   }
 });
