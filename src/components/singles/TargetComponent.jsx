@@ -21,8 +21,10 @@ export default class TargetComponent extends Component {
   render() {
     return <Card title={this.props.event.name}>
       <CardContent>
-        <Block><p>{this.props.event.description}</p></Block>
-        <Row style={{marginTop: '30px'}}>
+        <Block style={{ margin: '0px -15px 10px -15px' }}>
+          <p>{this.props.event.description}</p>
+        </Block>
+        <Row>
           {
             this.props.event.players.map(player => <Col key={player.id} width='50'style={{ marginTop: '10px' }}>
               <Button outline
