@@ -7,8 +7,9 @@ export default ({
     kidnapper: 'Sequestrador',
     informant: 'Informante',
     narrator: 'Narrador',
+    princess: 'Princesa',
     suspect: 'Suspeito',
-    unknown: 'Função Desconhecida',
+    unknown: '',
   },
   emblems: {
     angel: ['Proteção do Anjo', 'angel-wings'],

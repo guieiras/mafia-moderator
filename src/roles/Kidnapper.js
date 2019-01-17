@@ -29,7 +29,7 @@ export default ({
             target.state.votable = false;
             stack.push({ on: 't1', event: {
               name: 'kidnapRollback',
-              resolve: () => { target.votable = originalValue; }
+              resolve: () => { target.state.votable = originalValue; }
             } });
           }
         });

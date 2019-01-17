@@ -4,6 +4,7 @@ import Bodyguard from './Bodyguard';
 import Detective from './Detective';
 import Kidnapper from './Kidnapper';
 import Informant from './Informant';
+import Princess from './Princess';
 import Suspect from './Suspect';
 
 const roles = [
@@ -13,6 +14,7 @@ const roles = [
   Detective,
   Kidnapper,
   Informant,
+  Princess,
   Suspect,
 ];
 
