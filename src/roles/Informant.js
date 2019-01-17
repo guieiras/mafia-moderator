@@ -1,14 +1,14 @@
-import discovery from "../engine/events/discovery";
-
 export default ({
   id: 'informant',
-  aliases: ['investigator'],
   count: { min: 0, max: 1 },
   actions: {
-    'd1-t2': discovery('informant', 'wakeup', {
-      beforeActivate: async (_state, { actions }) => {
-        return await actions.showMessage('informationDetails', [], false);
+    'd1-t2': {
+      name: 'informatingDetails',
+      async activate(_, { actions }) {
+        await actions.showMessage('informationDetails', []);
+
+        return { event: { resolve: () => { } } };
       }
-    })
+    }
   }
 });
