@@ -10,7 +10,7 @@ export default ({
       async activate({ players }, { stack, actions }, { role }) {
         const targets = await actions.getTargets({
           id: 'bodyProtection',
-          players: players.filter((player) => player.state.live && player.state.targetable)
+          players: players.filter((player) => player.state.live && player.state.targetable && player.id !== role.players[0].id)
         });
 
         targets[0].emblems.push({ type: 'bodyguard', until: { time: 10 } });

@@ -12,7 +12,7 @@ export default ({
       async activate({ players }, { actions }, { role }) {
         const targets = await actions.getTargets({
           id: 'detectiveInvestigation',
-          players: players.filter((player) => player.state.live && player.state.targetable)
+          players: players.filter((player) => player.state.live && player.state.targetable && player.id !== role.players[0].id)
         });
 
         return { event: this, origin: role.players[0], targets, actions, actFn: () => { return !!targets[0].role && targets[0].role.id === 'assassin' } };
