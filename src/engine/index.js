@@ -80,7 +80,7 @@ export default class Engine {
       player.emblems = player.emblems.filter((emblem) =>
         !emblem.until ||
         ((!emblem.until.date || emblem.until.day >= this.state.clock.date) &&
-          ((emblem.until.time || 1) > this.state.clock.time)))
+          ((emblem.until.time || 1) !== this.state.clock.time)))
     });
   }
 

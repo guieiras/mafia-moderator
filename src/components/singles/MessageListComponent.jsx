@@ -5,7 +5,6 @@ import I18n from '../../i18n';
 export default class MessageListComponent extends Component {
   render() {
     const { translator } = this.props.event;
-    debugger;
     return <Card title={this.props.event.name}>
       <CardContent padding={false}>
         <Block style={{ margin: '10px 0px' }}>
