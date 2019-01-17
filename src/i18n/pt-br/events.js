@@ -15,17 +15,13 @@ export default ({
     name: 'Cidade Acorda!',
     description: 'Todos os jogadores devem abrir seus olhos. Os eventos que marcaram essa noite foram:'
   },
+  corruptInvestigation: {
+    name: 'Investigação do Corrupto',
+    description: 'Corrupto acorda e escolhe um outro jogador. Será revelado se o jogador é Assassino ou não.'
+  },
   detectiveInvestigation: {
     name: 'Investigação do Detetive',
     description: 'Detetive acorda e escolhe um outro jogador. Será revelado se o jogador é Assassino ou não.'
-  },
-  detectiveInvestigationResult: {
-    name: 'Investigação do Detetive',
-    description: 'O jogador escolhido $0 Assassino.',
-    objects: {
-      false: 'não é',
-      true: 'é',
-    }
   },
   discover: {
     assassin: {
@@ -44,6 +40,14 @@ export default ({
       name: 'Seleção de Narrador',
       description: 'Selecione o jogador que vai comandar as ações do jogo:'
     },
+  },
+  investigationResult: {
+    name: 'Resultado da investigação',
+    description: 'O jogador escolhido $0 Assassino.',
+    objects: {
+      false: 'não é',
+      true: 'é',
+    }
   },
   kidnapTarget: {
     name: 'Ataque do Sequestrador',

@@ -3,6 +3,7 @@ export default ({
     angel: 'Anjo',
     assassin: 'Assassino',
     bodyguard: 'Guarda-Costas',
+    corrupt: 'Corrupto',
     detective: 'Detetive',
     kidnapper: 'Sequestrador',
     informant: 'Informante',

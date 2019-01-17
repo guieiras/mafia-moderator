@@ -2,16 +2,16 @@ import discovery from "../engine/events/discovery";
 import I18n from "../i18n";
 
 export default ({
-  id: 'detective',
+  id: 'corrupt',
   aliases: ['investigator'],
   count: { min: 0, max: 1 },
   actions: {
-    'd1-t6': discovery('detective'),
+    'd1-t6': discovery('corrupt'),
     't6': {
       name: 'investigation',
       async activate({ players }, { actions }, { role }) {
         const targets = await actions.getTargets({
-          id: 'detectiveInvestigation',
+          id: 'corruptInvestigation',
           players: players.filter((player) => player.state.live && player.state.targetable && player.id !== role.players[0].id)
         });
 
