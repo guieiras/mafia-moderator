@@ -25,25 +25,15 @@ export default ({
           if (target.state.live) {
             target.emblems.push({ type: 'kidnapper', until: { time: 1 } });
             dailyReport.push({ action: 'Kidnapped', player: target });
+            let originalValue = target.state.votable;
             target.state.votable = false;
             stack.push({ on: 't1', event: {
-              resolve: () => {
-                target.votable = true;
-              }
+              name: 'kidnapRollback',
+              resolve: () => { target.votable = originalValue; }
             } });
           }
         });
       }
     }
-  },
-  win: (state) => {
-    const livePlayers = state.players.filter((player) => player.state.live);
-    const assassinsCount = livePlayers.filter((player) => player.role && player.role.id === 'assassin').length;
-    const playersCount = livePlayers.length;
-
-    if (playersCount < 2) { return assassinsCount > 0 };
-    if (playersCount === 3 && state.clock > 9) { return assassinsCount > 0 };
-
-    return 2 * assassinsCount >= playersCount;
   }
 });
