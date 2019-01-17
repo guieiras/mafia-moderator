@@ -7,6 +7,7 @@ export default ({
     kidnapper: 'Sequestrador',
     informant: 'Informante',
     narrator: 'Narrador',
+    suspect: 'Suspeito',
     unknown: 'Função Desconhecida',
   },
   emblems: {

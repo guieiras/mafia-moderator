@@ -8,7 +8,6 @@ export default class Stack {
 
   push(event, detectChanges = true) {
     event.uuid = uuid();
-    this.state.push(Object.assign({ targets: [], tags: [] }, event));
 
     if (event.targets) {
       event.targets.forEach(player => {
@@ -17,6 +16,8 @@ export default class Stack {
         }
       });
     }
+
+    this.state.push(Object.assign({ targets: [], tags: [] }, event));
     if (this.onChange && detectChanges) { this.onChange(); }
   }
 
