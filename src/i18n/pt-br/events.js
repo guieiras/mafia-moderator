@@ -29,21 +29,25 @@ export default ({
   },
   discover: {
     assassin: {
-      name: 'Assassinos acordam!',
+      name: 'Assassinos acordam',
       description: 'Identifique os jogadores que estão de olhos abertos:'
     },
     silent: {
-      name: '$0 se identifica.',
+      name: '$0 se identifica',
       description: 'O jogador deve levantar o polegar. Identique o jogador:'
     },
     wakeup: {
-      name: '$0 acorda!',
+      name: '$0 acorda',
       description: 'Identifique o jogador que está de olhos abertos:'
     },
     narrator: {
       name: 'Seleção de Narrador',
       description: 'Selecione o jogador que vai comandar as ações do jogo:'
     },
+  },
+  kidnapTarget: {
+    name: 'Ataque do Sequestrador',
+    description: 'Sequestrador acorda e escolhe um outro jogador. O jogador não poderá falar, votar ou ser votado no próximo dia.'
   },
   informationDetails: {
     name: 'Identificação dos Assassinos para o informante',
@@ -58,7 +62,7 @@ export default ({
     description: 'A cidade vota em um jogador que deseja eliminar.'
   },
   rolePlayersDead: {
-    name: 'O $0 foi eliminado!',
+    name: '$0 nâo está na cidade',
     description: 'Acorde o jogador, aguarde um instante, e peça para que o jogador durma. Dessa forma não será possível saber se o jogador foi eliminado.'
   },
   win: {
