@@ -18,7 +18,7 @@ export default ({
           target.emblems.push({ type: 'kidnapper', until: { time: 10 } });
         });
 
-        return { on: 't10', event: this, origin: role, targets, tags: ['negative'] };
+        return { on: 't10', event: this, origin: role.players[0], targets, tags: ['negative'] };
       },
       resolve(result, { stack, dailyReport }) {
         result.targets.forEach(target => {
