@@ -8,7 +8,11 @@ export default function StackBuilder(engine) {
         const dayTimeAct = activation.origin.actions[`d${state.clock.date}-t${state.clock.time}`];
         const timeAct = activation.origin.actions[`t${state.clock.time}`];
 
-        if ((dayTimeAct || timeAct) && !role.players.every((player) => player.state.live || player.state.exclude)) {
+        if (
+          ((dayTimeAct && !dayTimeAct.dead) ||
+           (timeAct && !timeAct.dead)) &&
+          !role.players.every((player) => player.state.live || player.state.exclude)
+        ) {
           return actions.showMessage('rolePlayersDead', [I18n.roles[role.id]])
         }
 

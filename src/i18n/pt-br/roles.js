@@ -5,8 +5,9 @@ export default ({
     bodyguard: 'Guarda-Costas',
     corrupt: 'Corrupto',
     detective: 'Detetive',
-    kidnapper: 'Sequestrador',
+    hunter: 'Caçador',
     informant: 'Informante',
+    kidnapper: 'Sequestrador',
     narrator: 'Narrador',
     princess: 'Princesa',
     suspect: 'Suspeito',
@@ -15,6 +16,7 @@ export default ({
   emblems: {
     angel: ['Proteção do Anjo', 'angel-wings'],
     bodyguard: ['Proteção do Guarda-Costas', 'black-hand-shield'],
+    hunter: ['Disparo do caçador', 'gunshot'],
     kidnapper: ['Ataque do Sequestrador', 'silenced'],
     mafia: ['Alvo dos Assassinos', 'targeted'],
   },

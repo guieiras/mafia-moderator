@@ -49,6 +49,10 @@ export default ({
       true: 'é',
     }
   },
+  hunterKill: {
+    name: 'Disparo do Caçador',
+    description: 'Caçador revela a sua carta e pode escolher um outro jogador. O jogador alvo será eliminado.'
+  },
   kidnapTarget: {
     name: 'Ataque do Sequestrador',
     description: 'Sequestrador acorda e escolhe um outro jogador. O jogador não poderá falar, votar ou ser votado no próximo dia.'
