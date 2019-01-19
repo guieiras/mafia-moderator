@@ -7,6 +7,7 @@ export default ({
     bulletproofSeller: 'Vendedor de Coletes',
     corrupt: 'Corrupto',
     detective: 'Detetive',
+    gangster: 'Gangster',
     hunter: 'Caçador',
     informant: 'Informante',
     kidnapper: 'Sequestrador',
