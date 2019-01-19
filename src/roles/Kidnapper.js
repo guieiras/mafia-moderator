@@ -14,26 +14,32 @@ export default ({
           players: players.filter((player) => player.state.live && player.state.targetable && player.id !== role.players[0].id)
         });
 
-        targets.forEach((target) => {
-          target.emblems.push({ type: 'kidnapper', until: { time: 10 } });
-        });
-
-        return { on: 't10', event: this, origin: role.players[0], targets, tags: ['negative'] };
+        return { event: this, origin: role.players[0], targets };
       },
       resolve(result, { stack, dailyReport }) {
         result.targets.forEach(target => {
-          if (target.state.live) {
-            target.emblems.push({ type: 'kidnapper', until: { time: 1 } });
-            dailyReport.push({ action: 'Kidnapped', player: target });
-            let originalValue = target.state.votable;
-            target.state.votable = false;
-            stack.push({ on: 't1', event: {
-              name: 'kidnapRollback',
-              resolve: () => { target.state.votable = originalValue; }
-            } });
-          }
+          target.emblems.push({ type: 'kidnapper', until: { time: 10 } });
+          stack.push({
+            on: 't10',
+            event: {
+              name: 'kidnap',
+              resolve() {
+                if (target.state.live) {
+                  target.emblems.push({ type: 'kidnapper', until: { time: 1 } });
+                  dailyReport.push({ action: 'Kidnapped', player: target });
+                  let originalValue = target.state.votable;
+                  target.state.votable = false;
+                  stack.push({ on: 't1', event: {
+                    name: 'kidnapRollback',
+                    resolve: () => { target.state.votable = originalValue; }
+                  } });
+                }
+              }
+            }
+          });
         });
       }
     }
   }
 });
+//, tags: ['negative']

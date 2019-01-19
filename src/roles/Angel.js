@@ -13,16 +13,25 @@ export default ({
           players: players.filter((player) => player.state.live && player.state.targetable)
         });
 
-        targets[0].emblems.push({ type: 'angel', until: { time: 10 } });
-        return { event: this, origin: role.players[0], targets, stack, on: 't9' };
+        return { event: this, origin: role.players[0], targets, stack };
       },
-      resolve(result) {
-        const negativeEvents = result.stack.state.filter((ev) =>
-          ((ev.targets && ev.targets[0].id) === result.targets[0].id) &&
-          ev.tags.indexOf('negative') >= 0
-        );
+      resolve(result, { stack }) {
+        result.targets[0].emblems.push({ type: 'angel', until: { time: 10 } });
 
-        negativeEvents.forEach((event) => event.negatedBy = result.event);
+        stack.push({
+          on: 't9',
+          event: {
+            name: 'angelBlessing',
+            resolve() {
+              const negativeEvents = result.stack.state.filter((ev) =>
+                ((ev.targets && ev.targets[0] && ev.targets[0].id) === result.targets[0].id) &&
+                ev.tags.indexOf('negative') >= 0
+              );
+
+              negativeEvents.forEach((event) => event.negatedBy = result.event);
+            }
+          }
+        })
       }
     }
   }

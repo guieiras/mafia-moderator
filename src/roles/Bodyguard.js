@@ -13,17 +13,25 @@ export default ({
           players: players.filter((player) => player.state.live && player.state.targetable && player.id !== role.players[0].id)
         });
 
-        targets[0].emblems.push({ type: 'bodyguard', until: { time: 10 } });
-
-        return { event: this, origin: role.players[0], targets, stack, on: 't8' };
+        return { event: this, origin: role.players[0], targets, stack };
       },
-      resolve(result) {
-        const mafia = result.stack.state.filter((activation) =>
-          ((activation.targets && activation.targets[0].id) === result.targets[0].id) &&
-          activation.event.name === 'mafiaKill'
-        );
+      resolve(result, { stack }) {
+        result.targets[0].emblems.push({ type: 'bodyguard', until: { time: 10 } });
 
-        mafia.forEach((event) => event.targets = [result.origin]);
+        stack.push({
+          on: 't8',
+          event: {
+            name: 'bodyguardProtection',
+            resolve() {
+              const mafia = result.stack.state.filter((activation) =>
+                ((activation.targets && activation.targets[0] && activation.targets[0].id) === result.targets[0].id) &&
+                activation.event.name === 'mafiaKill'
+              );
+
+              mafia.forEach((event) => event.targets = [result.origin]);
+            }
+          }
+        })
       }
     }
   }
