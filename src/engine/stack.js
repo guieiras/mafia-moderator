@@ -1,5 +1,6 @@
 import { observable } from "mobx";
 import uuid from "uuid/v1";
+import Player from "./player";
 
 export default class Stack {
   constructor() {
@@ -14,6 +15,19 @@ export default class Stack {
         if (player.role && player.role.hooks.onTarget) {
           player.role.hooks.onTarget(event, this);
         }
+      });
+    }
+
+    if (event.origin && event.origin._type === 'Player') {
+      Object.values(event.origin.hooks.onOrigin).forEach(hook => {
+        hook(event, this);
+      });
+    }
+    if (event.targets) {
+      event.targets.forEach(target => {
+        Object.values(target.hooks.onTarget).forEach(hook => {
+          hook(event, this);
+        });
       });
     }
 
