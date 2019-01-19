@@ -31,7 +31,7 @@ export default ({
   },
   roles: {
     title: 'Selecionar Papéis',
-    noRole: 'Papéis sem ação',
+    noRole: 'Outros papéis',
     start: 'Iniciar Jogo',
   },
 });

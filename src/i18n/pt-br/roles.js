@@ -8,7 +8,7 @@ export default ({
     corrupt: 'Corrupto',
     detective: 'Detetive',
     friend: 'Amigo',
-    gangster: 'Gangster',
+    gangster: 'Gângster',
     hunter: 'Caçador',
     informant: 'Informante',
     kidnapper: 'Sequestrador',

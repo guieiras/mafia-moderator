@@ -113,7 +113,7 @@ export default ({
     },
     gangster: {
       name: '$0 ganhou o jogo',
-      description: 'Todos os outros gangsters foram eliminados.'
+      description: 'Todos os outros gângsters foram eliminados.'
     },
     narrator: {
       name: 'Vitória da cidade',
