@@ -2,6 +2,7 @@ export default ({
   roles: {
     angel: 'Anjo',
     assassin: 'Assassino',
+    barman: 'Barman',
     bodyguard: 'Guarda-Costas',
     corrupt: 'Corrupto',
     detective: 'Detetive',
@@ -15,6 +16,7 @@ export default ({
   },
   emblems: {
     angel: ['Proteção do Anjo', 'angel-wings'],
+    barman: ['Efeitos negados', 'beer-bottle'],
     bodyguard: ['Proteção do Guarda-Costas', 'black-hand-shield'],
     hunter: ['Disparo do caçador', 'gunshot'],
     kidnapper: ['Ataque do Sequestrador', 'silenced'],

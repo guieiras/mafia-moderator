@@ -3,6 +3,10 @@ export default ({
     name: 'Proteção do Anjo',
     description: 'Anjo acorda e escolhe um jogador. O jogador será protegido de efeitos negativos.'
   },
+  barmanMeeting: {
+    name: 'Alvo do Barman',
+    description: 'Barman acorda e escolhe um jogador. A ação do jogador (se houver) será bloqueada durante essa noite.'
+  },
   bodyProtection: {
     name: 'Proteção do Guarda-Costas',
     description: 'Guarda-Costas acorda e escolhe um outro jogador. O jogador será protegido dos assassinos, usando o Guarda-costas em seu lugar.'
@@ -41,6 +45,14 @@ export default ({
       description: 'Selecione o jogador que vai comandar as ações do jogo:'
     },
   },
+  hunterKill: {
+    name: 'Disparo do Caçador',
+    description: 'Caçador revela a sua carta e pode escolher um outro jogador. O jogador alvo será eliminado.'
+  },
+  informationDetails: {
+    name: 'Identificação dos Assassinos para o informante',
+    description: 'Todos os assassinos devem erguer o polegar. Cada informante, separadamente, deve abrir os olhos e identificar os assassinos sem que eles o saibam.'
+  },
   investigationResult: {
     name: 'Resultado da investigação',
     description: 'O jogador escolhido $0 Assassino.',
@@ -49,17 +61,9 @@ export default ({
       true: 'é',
     }
   },
-  hunterKill: {
-    name: 'Disparo do Caçador',
-    description: 'Caçador revela a sua carta e pode escolher um outro jogador. O jogador alvo será eliminado.'
-  },
   kidnapTarget: {
     name: 'Ataque do Sequestrador',
     description: 'Sequestrador acorda e escolhe um outro jogador. O jogador não poderá falar, votar ou ser votado no próximo dia.'
-  },
-  informationDetails: {
-    name: 'Identificação dos Assassinos para o informante',
-    description: 'Todos os assassinos devem erguer o polegar. Cada informante, separadamente, deve abrir os olhos e identificar os assassinos sem que eles o saibam.'
   },
   mafiaKill: {
     name: 'Ataque noturno dos Assassinos',
@@ -69,6 +73,11 @@ export default ({
     name: 'Eliminação do dia',
     description: 'A cidade vota em um jogador que deseja eliminar.'
   },
+  playerNegatedByBarman: {
+    name: 'Ação bloqueada pelo Barman',
+    description: 'Avise para $0 que a ação foi bloqueada pelo Barman.'
+  },
+
   rolePlayersDead: {
     name: '$0 nâo está na cidade',
     description: 'Acorde o jogador, aguarde um instante, e peça para que o jogador durma. Dessa forma não será possível saber se o jogador foi eliminado.'
