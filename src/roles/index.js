@@ -5,6 +5,7 @@ import Bodyguard from './Bodyguard';
 import BulletproofSeller from './BulletproofSeller';
 import Corrupt from './Corrupt';
 import Detective from './Detective';
+import Friend from './Friend';
 import Gangster from './Gangster';
 import Hunter from './Hunter';
 import Informant from './Informant';
@@ -20,6 +21,7 @@ const roles = [
   BulletproofSeller,
   Corrupt,
   Detective,
+  Friend,
   Gangster,
   Hunter,
   Informant,
