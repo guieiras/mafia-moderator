@@ -17,6 +17,7 @@ export default class Engine {
     this.stack = new Stack();
     this.ignite = TailCall.recur(this.handleNext);
     this.stack.onChange = this.ignite.bind(this);
+    this.registerStackHandler();
     this.clock = new Clock();
     this.state = observable({
       clock: this.clock.state,
@@ -88,5 +89,30 @@ export default class Engine {
     if (this.state.clock.time === 1) {
       this.dailyReport = [];
     }
+  }
+
+  registerStackHandler() {
+    this.stack.register((event) => {
+      if (event.targets) {
+        event.targets.forEach(player => {
+          if (player.role && player.role.hooks.onTarget) {
+            player.role.hooks.onTarget(event, this);
+          }
+        });
+      }
+
+      if (event.origin && event.origin._type === 'Player') {
+        Object.values(event.origin.hooks.onOrigin).forEach(hook => {
+          hook(event, this);
+        });
+      }
+      if (event.targets) {
+        event.targets.forEach(target => {
+          Object.values(target.hooks.onTarget).forEach(hook => {
+            hook(event, this);
+          });
+        });
+      }
+    }, 'onPush');
   }
 }

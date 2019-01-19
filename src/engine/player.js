@@ -26,19 +26,16 @@ export function kill(player) {
   player.state.votable = false;
 }
 
-export function negate(player, { by, until }) {
+export function hook(moment, player, { handler, until }) {
   const id = uuid();
-  player.hooks.onOrigin[id] = (activation) => {
-    debugger;
-    activation.negatedBy = by;
-  }
+  player.hooks[moment][id] = handler;
 
   return {
     on: until,
     event: {
       name: 'negateRollback',
       resolve: () => {
-        delete player.hooks.onOrigin[id];
+        delete player.hooks[moment][id];
       }
     }
   }
