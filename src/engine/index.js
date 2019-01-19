@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { observable, isArrayLike } from "mobx";
 import TailCall from 'tail-call/core';
 
 import db from "../boundaries/database";
@@ -66,9 +66,11 @@ export default class Engine {
   reachedSomeWinCondition() {
     for (let index = 0; index < this.state.roles.length; index++) {
       const role = this.state.roles[index];
-      if (role.win(this.state)) {
+      const win = role.win(this.state)
+
+      if(win) {
         this.stack.state = [];
-        this.actions.showMessage(['win', role.id], [], false);
+        this.actions.showMessage(['win', role.id], isArrayLike(win) ? win : [], false);
         return true;
       }
     }

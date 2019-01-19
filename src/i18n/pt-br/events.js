@@ -33,20 +33,40 @@ export default ({
   },
   discover: {
     assassin: {
-      name: 'Assassinos acordam',
-      description: 'Identifique os jogadores que estão de olhos abertos:'
+      singular: {
+        name: 'Assassino acorda',
+        description: 'Identifique o jogador que está de olhos abertos:'
+      },
+      plural: {
+        name: 'Assassinos acordam',
+        description: 'Identifique os jogadores que estão de olhos abertos:'
+      }
     },
     silent: {
-      name: '$0 se identifica',
-      description: 'O jogador deve levantar o polegar. Identique o jogador:'
+      singular: {
+        name: '$0 se identifica',
+        description: 'O jogador deve levantar o polegar. Identique o jogador:'
+      },
+      plural: {
+        name: '$0s se identificam',
+        description: 'Os jogadores devem levantar o polegar. Identique todos os jogadores:'
+      }
     },
     wakeup: {
-      name: '$0 acorda',
-      description: 'Identifique o jogador que está de olhos abertos:'
+      singular: {
+        name: '$0 acorda',
+        description: 'Identifique o jogador que está de olhos abertos:'
+      },
+      plural: {
+        name: '$0s acordam',
+        description: 'Identifique todos os jogadores que estão de olhos abertos:'
+      }
     },
     narrator: {
-      name: 'Seleção de Narrador',
-      description: 'Selecione o jogador que vai comandar as ações do jogo:'
+      singular: {
+        name: 'Seleção de Narrador',
+        description: 'Selecione o jogador que vai comandar as ações do jogo:'
+      }
     },
   },
   hunterKill: {
@@ -90,6 +110,10 @@ export default ({
     assassin: {
       name: 'Vitória dos Assassinos',
       description: 'O número de Assassinos ultrapassou o número de cidadãos. Os Assassinos venceram.'
+    },
+    gangster: {
+      name: '$0 ganhou o jogo',
+      description: 'Todos os outros gangsters foram eliminados.'
     },
     narrator: {
       name: 'Vitória da cidade',

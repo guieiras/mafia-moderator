@@ -6,7 +6,7 @@ export default function discovery(id, method = 'wakeup', hooks = {}) {
     async activate({ players }, { actions }, { role }) {
       if (hooks.beforeActivate) { await hooks.beforeActivate(...arguments); }
       const targets = await actions.getTargets({
-        id: `discover.${method}`,
+        id: `discover.${method}${role.players.length > 1 ? '.plural' : '.singular'}`,
         count: role.players.length,
         players: players.filter((player) => !player.role),
         helpers: [I18n.roles[role.id]]
