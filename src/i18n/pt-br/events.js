@@ -11,6 +11,10 @@ export default ({
     name: 'Proteção do Guarda-Costas',
     description: 'Guarda-Costas acorda e escolhe um outro jogador. O jogador será protegido dos assassinos, usando o Guarda-costas em seu lugar.'
   },
+  bulletproofGiveaway: {
+    name: 'Empréstimo do Colete à prova de balas',
+    description: 'Vendedor de Coletes acorda e escolhe um outro jogador. A morte do jogador pelos assassinos será adiada para o fim do dia.'
+  },
   citySleeps: {
     name: 'Cidade Dorme!',
     description: 'Todos os jogadores devem fechar seus olhos.'
