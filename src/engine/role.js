@@ -10,6 +10,8 @@ export default class Role {
     return this.base.id;
   }
 
+  get _type() { return 'Role'; }
+
   get hooks() {
     return this.base.hooks || {};
   }
