@@ -29,7 +29,7 @@ export default ({
     mafia: ['Alvo dos Assassinos', 'targeted'],
   },
   reports: {
-    mafiaKiled: '$player foi eliminado(a) pelos assassinos!',
+    mafiaKilled: '$player foi eliminado(a) pelos assassinos!',
     kidnapped: '$player foi sequestrado(a). O jogador não pode falar, votar ou ser votado.',
   }
 });
