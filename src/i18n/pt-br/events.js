@@ -101,10 +101,13 @@ export default ({
     name: 'Ação bloqueada pelo Barman',
     description: 'Avise para $0 que a ação foi bloqueada pelo Barman.'
   },
-
   rolePlayersDead: {
     name: '$0 nâo está na cidade',
     description: 'Acorde o jogador, aguarde um instante, e peça para que o jogador durma. Dessa forma não será possível saber se o jogador foi eliminado.'
+  },
+  vigilanceResult: {
+    name: 'Resultado da espionagem',
+    description: 'Os jogadores que escolheram $0 essa noite foram: $1.'
   },
   win: {
     assassin: {

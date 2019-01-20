@@ -12,6 +12,8 @@ import Informant from './Informant';
 import Kidnapper from './Kidnapper';
 import Princess from './Princess';
 import Suspect from './Suspect';
+import CityVigilant from './Vigilant/CityVigilant';
+import MafiaVigilant from './Vigilant/MafiaVigilant';
 
 const roles = [
   Angel,
@@ -19,6 +21,7 @@ const roles = [
   Barman,
   Bodyguard,
   BulletproofSeller,
+  CityVigilant,
   Corrupt,
   Detective,
   Friend,
@@ -26,6 +29,7 @@ const roles = [
   Hunter,
   Informant,
   Kidnapper,
+  MafiaVigilant,
   Princess,
   Suspect,
 ];
