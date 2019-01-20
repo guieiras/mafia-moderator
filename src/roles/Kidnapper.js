@@ -5,8 +5,8 @@ export default ({
   aliases: ['mafia'],
   count: { min: 0, max: 1 },
   actions: {
-    'd1-t5': discovery('kidnapper'),
-    't5': {
+    'd1-t6': discovery('kidnapper'),
+    't6': {
       name: 'kidnapping',
       async activate({ players }, { actions }, { role }) {
         const targets = await actions.getTargets({
@@ -21,6 +21,7 @@ export default ({
           target.emblems.push({ type: 'kidnapper', until: { time: 10 } });
           stack.push({
             on: 't10',
+            tags: ['negative'],
             event: {
               name: 'kidnap',
               resolve() {
@@ -42,4 +43,3 @@ export default ({
     }
   }
 });
-//, tags: ['negative']
