@@ -22,6 +22,7 @@ export default ({
           stack.push({
             on: 't10',
             tags: ['negative'],
+            targets: [target],
             event: {
               name: 'kidnap',
               resolve() {
@@ -37,7 +38,7 @@ export default ({
                 }
               }
             }
-          });
+          }, true, false);
         });
       }
     }

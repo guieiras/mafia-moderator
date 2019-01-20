@@ -110,9 +110,11 @@ export default class Engine {
       }
       if (event.targets) {
         event.targets.forEach(target => {
-          Object.values(target.hooks.onTarget).forEach(hook => {
-            hook(event, this);
-          });
+          if (target && target._type === 'Player') {
+            Object.values(target.hooks.onTarget).forEach(hook => {
+              hook(event, this);
+            });
+          }
         });
       }
     }, 'onPush');

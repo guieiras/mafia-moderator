@@ -7,10 +7,12 @@ export default class Stack {
     this.hooks = { onPush: [], onPull: [] };
   }
 
-  push(event, detectChanges = true) {
+  push(event, detectChanges = true, bubbling = true) {
     event.uuid = uuid();
 
-    this.hooks.onPush.forEach((hook) => { hook(event); });
+    if (bubbling) {
+      this.hooks.onPush.forEach((hook) => { hook(event); });
+    }
 
     this.state.push(Object.assign({ targets: [], tags: [] }, event));
     if (this.onChange && detectChanges) { this.onChange(); }
