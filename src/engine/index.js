@@ -64,18 +64,18 @@ export default class Engine {
   }
 
   reachedSomeWinCondition() {
-    for (let index = 0; index < this.state.roles.length; index++) {
-      const role = this.state.roles[index];
-      const win = role.win(this.state)
+    return this._reachedWinCondition || this.state.roles.some((role) => {
+      const win = role.win(this.state);
 
       if(win) {
         this.stack.state = [];
         this.actions.showMessage(['win', role.id], isArrayLike(win) ? win : [], false);
+        this._reachedWinCondition = true;
         return true;
       }
-    }
 
-    return false;
+      return false;
+    });
   }
 
   checkEmblems() {
