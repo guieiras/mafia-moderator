@@ -17,6 +17,7 @@ export default ({
     narrator: 'Narrador',
     princess: 'Princesa',
     suspect: 'Suspeito',
+    vampire: 'Vampiro',
     unknown: '',
   },
   emblems: {
@@ -27,9 +28,11 @@ export default ({
     hunter: ['Disparo do caçador', 'gunshot'],
     kidnapper: ['Ataque do Sequestrador', 'silenced'],
     mafia: ['Alvo dos Assassinos', 'targeted'],
+    vampire: ['Mordido por Vampiro', 'vampire-dracula'],
   },
   reports: {
     mafiaKilled: '$player foi eliminado(a) pelos assassinos!',
     kidnapped: '$player foi sequestrado(a). O jogador não pode falar, votar ou ser votado.',
+    bittenByVampire: '$player foi mordido(a) pelo Vampiro.',
   }
 });

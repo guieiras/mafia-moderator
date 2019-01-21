@@ -7,4 +7,7 @@ export default ({
   Kidnapped(player) {
     return I18n.reports.kidnapped.replace('$player', player.name);
   },
+  BittenByVampire(player) {
+    return I18n.reports.bittenByVampire.replace('$player', player.name);
+  }
 });

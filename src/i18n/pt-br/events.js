@@ -102,12 +102,20 @@ export default ({
     description: 'Avise para $0 que a ação foi bloqueada pelo Barman.'
   },
   rolePlayersDead: {
-    name: '$0 nâo está na cidade',
+    name: '$0 não está na cidade',
     description: 'Acorde o jogador, aguarde um instante, e peça para que o jogador durma. Dessa forma não será possível saber se o jogador foi eliminado.'
   },
   vigilanceResult: {
     name: 'Resultado da espionagem',
     description: 'Os jogadores que escolheram $0 essa noite foram: $1.'
+  },
+  vampireBite: {
+    name: 'Mordida do Vampiro',
+    description: 'Vampiro acorda e escolhe um jogador não tem mordida. O jogador ganhará uma mordida pela manhã.'
+  },
+  vampireNoTargets: {
+    name: 'Não há jogadores válidos para o Vampiro morder',
+    description: 'Peça para o Vampiro acordar, e em seguida dormir. Nenhum jogador receberá uma mordida'
   },
   win: {
     assassin: {
@@ -121,7 +129,11 @@ export default ({
     narrator: {
       name: 'Vitória da cidade',
       description: 'Os Assassinos foram eliminados.'
-    }
+    },
+    vampire: {
+      name: 'Vampiro ganhou o jogo',
+      description: 'Três jogadores vivos estão com mordida. A condição de vitória do Vampiro foi atingida.'
+    },
   },
   shared: {
     ok: 'OK!'

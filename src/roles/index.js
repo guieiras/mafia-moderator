@@ -14,6 +14,7 @@ import Princess from './Princess';
 import Suspect from './Suspect';
 import CityVigilant from './Vigilant/CityVigilant';
 import MafiaVigilant from './Vigilant/MafiaVigilant';
+import Vampire from './Vampire';
 
 const roles = [
   Angel,
@@ -32,6 +33,7 @@ const roles = [
   MafiaVigilant,
   Princess,
   Suspect,
+  Vampire,
 ];
 
 export default new class RoleManager {
