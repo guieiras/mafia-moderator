@@ -1,5 +1,5 @@
-import discovery from "../engine/events/discovery";
-import { kill } from "../engine/player";
+import discovery from '../engine/events/discovery'
+import { kill } from '../engine/player'
 
 export default ({
   id: 'hunter',
@@ -9,7 +9,7 @@ export default ({
     't14': {
       name: 'hunterKill',
       dead: true,
-      async activate({ players }, { actions }, { role }) {
+      async activate ({ players }, { actions }, { role }) {
         if (!role.players[0].emblems.some((emblem) => emblem.type === 'hunter')) {
           return { event: { resolve: () => {} } }
         }
@@ -17,13 +17,13 @@ export default ({
         const targets = await actions.getTargets({
           id: 'hunterKill',
           players: players.filter((player) => player.state.live && player.state.targetable && player.id !== role.players[0].id),
-          acceptNull: true,
-        });
+          acceptNull: true
+        })
 
-        return { event: this, origin: role.players[0], targets };
+        return { event: this, origin: role.players[0], targets }
       },
-      resolve(result) {
-        kill(result.targets[0]);
+      resolve (result) {
+        kill(result.targets[0])
       }
     }
   },
@@ -33,8 +33,8 @@ export default ({
         activation.targets[0].emblems.push({
           type: 'hunter',
           until: { time: 15 }
-        });
+        })
       }
     }
   }
-});
+})

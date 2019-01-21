@@ -1,3 +1,3 @@
-import dictionary from './pt-br';
+import dictionary from './pt-br'
 
-export default dictionary;
+export default dictionary

@@ -1,5 +1,5 @@
-import discovery from "../engine/events/discovery";
-import I18n from "../i18n";
+import discovery from '../engine/events/discovery'
+import I18n from '../i18n'
 
 export default ({
   id: 'detective',
@@ -9,20 +9,20 @@ export default ({
     'd1-t6': discovery('detective'),
     't6': {
       name: 'investigation',
-      async activate({ players }, { actions }, { role }) {
+      async activate ({ players }, { actions }, { role }) {
         const targets = await actions.getTargets({
           id: 'detectiveInvestigation',
           players: players.filter((player) => player.state.live && player.state.targetable && player.id !== role.players[0].id)
-        });
+        })
 
-        return { event: this, origin: role.players[0], targets, actions, actFn: () => { return !!targets[0].role && targets[0].role.id === 'assassin' } };
+        return { event: this, origin: role.players[0], targets, actions, actFn: () => { return !!targets[0].role && targets[0].role.id === 'assassin' } }
       },
-      resolve(result) {
+      resolve (result) {
         result.actions.showMessage(
           'investigationResult',
           [I18n.events.investigationResult.objects[JSON.stringify(result.actFn())]]
-        );
+        )
       }
     }
   }
-});
+})

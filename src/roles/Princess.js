@@ -1,4 +1,4 @@
-import discovery from "../engine/events/discovery";
+import discovery from '../engine/events/discovery'
 
 export default ({
   id: 'princess',
@@ -9,9 +9,9 @@ export default ({
   hooks: {
     onTarget: (activation) => {
       if (activation.event.name === 'playerLynch') {
-        activation.negatedBy = activation.targets[0];
-        activation.targets[0].state.votable = false;
+        activation.negatedBy = activation.targets[0]
+        activation.targets[0].state.votable = false
       }
     }
   }
-});
+})

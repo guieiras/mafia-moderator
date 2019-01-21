@@ -4,11 +4,11 @@ export default ({
   actions: {
     'd1-t2': {
       name: 'informatingDetails',
-      async activate(_, { actions }) {
-        await actions.showMessage('informationDetails', []);
+      async activate (_, { actions }) {
+        await actions.showMessage('informationDetails', [])
 
-        return { event: { resolve: () => { } } };
+        return { event: { resolve: () => { } } }
       }
     }
   }
-});
+})

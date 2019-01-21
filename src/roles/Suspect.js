@@ -1,4 +1,4 @@
-import discovery from "../engine/events/discovery";
+import discovery from '../engine/events/discovery'
 
 export default ({
   id: 'suspect',
@@ -13,4 +13,4 @@ export default ({
       }
     }
   }
-});
+})

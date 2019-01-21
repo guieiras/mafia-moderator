@@ -1,51 +1,51 @@
-import discovery from "../engine/events/discovery";
-import WakeUpTranslator from "../engine/translators/wakeup";
-import { kill } from "../engine/player";
+import discovery from '../engine/events/discovery'
+import WakeUpTranslator from '../engine/translators/wakeup'
+import { kill } from '../engine/player'
 
 export default ({
   id: 'narrator',
   actions: {
     'd1-t1': discovery('narrator', 'narrator', {
       afterResolve: (result) => {
-        result.targets[0].state = { exclude: true };
+        result.targets[0].state = { exclude: true }
       }
     }),
     't1': {
       name: 'citySleeps',
-      async activate(_, { actions }) {
-        await actions.showMessage('citySleeps', []);
+      async activate (_, { actions }) {
+        await actions.showMessage('citySleeps', [])
 
-        return { event: { resolve: () => {} } };
+        return { event: { resolve: () => {} } }
       }
     },
     't11': {
       name: 'cityWakeUp',
-      async activate(_, { actions, dailyReport }) {
-        await actions.showList('cityWakeUp', dailyReport, WakeUpTranslator, true);
+      async activate (_, { actions, dailyReport }) {
+        await actions.showList('cityWakeUp', dailyReport, WakeUpTranslator, true)
 
-        return { event: { resolve: () => {} } };
+        return { event: { resolve: () => {} } }
       }
     },
     't13': {
       name: 'playerLynch',
-      async activate({ players }, { actions }) {
+      async activate ({ players }, { actions }) {
         const targets = await actions.getTargets({
           id: 'playerLynch',
           players: players.filter((player) => player.state.votable),
-          acceptNull: true,
-        });
+          acceptNull: true
+        })
 
-        return { event: this, origin: null, targets };
+        return { event: this, origin: null, targets }
       },
-      resolve(result) {
-        result.targets.forEach(target => { kill(target); });
+      resolve (result) {
+        result.targets.forEach(target => { kill(target) })
       }
     }
   },
-  win(state) {
-    const assassins = state.players.filter((player) => player.role && player.role.id === 'assassin');
+  win (state) {
+    const assassins = state.players.filter((player) => player.role && player.role.id === 'assassin')
 
     return assassins.length > 0 &&
-           assassins.filter((player) => player.state.live).length === 0;
+           assassins.filter((player) => player.state.live).length === 0
   }
-});
+})

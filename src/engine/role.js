@@ -1,26 +1,26 @@
-import roles from '../roles';
+import roles from '../roles'
 
 export default class Role {
-  constructor(base, amount) {
-    this.base = typeof base === 'string' ? roles.find(base) : base;
-    this.players = new Array(amount);
+  constructor (base, amount) {
+    this.base = typeof base === 'string' ? roles.find(base) : base
+    this.players = new Array(amount)
   }
 
-  get id() {
-    return this.base.id;
+  get id () {
+    return this.base.id
   }
 
-  get _type() { return 'Role'; }
+  get _type () { return 'Role' }
 
-  get hooks() {
-    return this.base.hooks || {};
+  get hooks () {
+    return this.base.hooks || {}
   }
 
-  get actions() {
-    return this.base.actions || {};
+  get actions () {
+    return this.base.actions || {}
   }
 
-  get win() {
-    return this.base.win || ((_) => false);
+  get win () {
+    return this.base.win || ((_) => false)
   }
 }

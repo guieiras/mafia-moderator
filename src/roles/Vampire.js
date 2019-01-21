@@ -1,4 +1,4 @@
-import discovery from "../engine/events/discovery";
+import discovery from '../engine/events/discovery'
 
 export default ({
   id: 'vampire',
@@ -8,7 +8,7 @@ export default ({
     'd1-t6': discovery('vampire'),
     't6': {
       name: 'vampireBite',
-      async activate({ players }, { actions }, { role }) {
+      async activate ({ players }, { actions }, { role }) {
         const validPlayers = players.filter((player) => player.state.live &&
                              player.state.targetable &&
                              player.id !== role.players[0].id &&
@@ -18,27 +18,27 @@ export default ({
           const targets = await actions.getTargets({
             id: 'vampireBite',
             players: validPlayers
-          });
+          })
 
-          return { on: 't10', event: this, origin: role.players[0], targets, tags: ['negative'] };
+          return { on: 't10', event: this, origin: role.players[0], targets, tags: ['negative'] }
         } else {
-          await actions.showMessage('vampireNoTargets');
+          await actions.showMessage('vampireNoTargets')
           return { event: { resolve: () => {} }, origin: role, targets: [] }
         }
       },
-      resolve(result, { dailyReport }) {
+      resolve (result, { dailyReport }) {
         result.targets.forEach(target => {
           dailyReport.push({ action: 'BittenByVampire', player: target })
-          target.emblems.push({ type: 'vampire' });
-        });
+          target.emblems.push({ type: 'vampire' })
+        })
       }
     }
   },
   win: (state) => {
     const bittenPlayers = state
       .players
-      .filter((player) => player.state.live && player.emblems.some((emblem) => emblem.type === 'vampire'));
+      .filter((player) => player.state.live && player.emblems.some((emblem) => emblem.type === 'vampire'))
 
-    return state.clock.time === 12 && bittenPlayers.length === 3;
+    return state.clock.time === 12 && bittenPlayers.length === 3
   }
-});
+})
