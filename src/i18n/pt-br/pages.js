@@ -8,6 +8,12 @@ export default ({
       nullPlayer: 'Ninguém',
       title: 'Jogadores',
     },
+    menu: {
+      title: 'Menu de opções',
+      backToPlayers: 'Voltar para a seleção de jogadores',
+      backToRoles: 'Voltar para a seleção de papéis',
+      backToGame: 'Voltar para o jogo atual',
+    },
     stack: {
       title: 'Eventos Pendentes',
     },
