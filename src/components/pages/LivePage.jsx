@@ -34,6 +34,10 @@ export default observer(class LivePage extends Component {
     this.setState({ menuOpened: false })
   }
 
+  resetGame() {
+    this.$f7router.refreshPage()
+  }
+
   resetToPlayers() {
     this.closeMenu()
     storage.currentGame.save(null).then(() => {
@@ -51,7 +55,7 @@ export default observer(class LivePage extends Component {
   render() {
     if (!this.controller) { return <Page><p>{I18n.pages.live.loading}</p></Page> }
     return <Page>
-      <Navbar title={I18n.pages.shared.title} backLink>
+      <Navbar title={I18n.pages.shared.title}>
         <NavRight>
           <Link onClick={() => this.setState({ menuOpened: true })} iconF7="menu"/>
         </NavRight>
@@ -65,13 +69,16 @@ export default observer(class LivePage extends Component {
           <Navbar title={I18n.pages.live.menu.title} />
           <Block>
             <p>
+              <Button raised popupClose>{I18n.pages.live.menu.backToGame}</Button>
+            </p>
+            <p>
+              <Button raised onClick={() => this.resetGame()}>{I18n.pages.live.menu.reset}</Button>
+            </p>
+            <p>
               <Button raised onClick={() => this.resetToPlayers()}>{I18n.pages.live.menu.backToPlayers}</Button>
             </p>
             <p>
               <Button raised onClick={() => this.resetToRoles()}>{I18n.pages.live.menu.backToRoles}</Button>
-            </p>
-            <p>
-              <Button raised popupClose>{I18n.pages.live.menu.backToGame}</Button>
             </p>
           </Block>
         </Page>

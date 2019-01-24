@@ -10,9 +10,10 @@ export default ({
     },
     menu: {
       title: 'Menu de opções',
-      backToPlayers: 'Voltar para a seleção de jogadores',
-      backToRoles: 'Voltar para a seleção de papéis',
-      backToGame: 'Voltar para o jogo atual',
+      backToGame: 'Continuar jogo atual',
+      reset: 'Reiniciar o jogo com as mesmas configurações',
+      backToPlayers: 'Sair e voltar para a seleção de jogadores',
+      backToRoles: 'Sair e voltar para a seleção de papéis',
     },
     stack: {
       title: 'Eventos Pendentes',
