@@ -105,9 +105,14 @@ export default ({
     name: '$0 não está na cidade',
     description: 'Acorde o jogador, aguarde um instante, e peça para que o jogador durma. Dessa forma não será possível saber se o jogador foi eliminado.'
   },
+  vigilance: {
+    name: 'Vigilância noturna',
+    description: 'Vigilante acorda e escolhe um outro jogador. Serão revelados todos os jogadores que escolheram o alvo essa noite.'
+
+  },
   vigilanceResult: {
-    name: 'Resultado da espionagem',
-    description: 'Os jogadores que escolheram $0 essa noite foram: $1.'
+    name: 'Resultado da vigilância',
+    description: 'Os jogadores que escolheram $0 essa noite foram: $1'
   },
   vampireBite: {
     name: 'Mordida do Vampiro',
